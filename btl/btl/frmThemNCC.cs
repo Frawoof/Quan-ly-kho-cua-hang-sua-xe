@@ -30,7 +30,7 @@ namespace btl
 				return;
 			}
 
-			DataTable data = dtbase.ReadData("Select * From NhaCungCap Where MaNCC = '" + txtMaNCC + "'");
+			DataTable data = dtbase.ReadData("Select * From NhaCungCap Where MaNCC = '" + txtMaNCC.Text + "'");
 
 			if (data.Rows.Count > 0)
 			{
@@ -40,6 +40,9 @@ namespace btl
 
 			string sql = "Insert Into NhaCungCap Values ('" + txtMaNCC.Text + "', N'" + txtTenNCC.Text + "', '" + txtSDT.Text + "', N'" + txtDiaChi.Text + "')";
 			dtbase.ChangeData(sql);
+
+			MessageBox.Show("Thêm thành công!", "Thông báo");
+			this.Close();
 		}
 
 		private void btnHuy_Click(object sender, EventArgs e)

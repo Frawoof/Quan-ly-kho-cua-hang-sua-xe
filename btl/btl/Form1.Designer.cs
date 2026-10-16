@@ -29,6 +29,8 @@
 		private void InitializeComponent()
 		{
 			groupBox1 = new GroupBox();
+			btnXoaNCC = new Button();
+			btnThemNCC = new Button();
 			txtMaNVNhap = new TextBox();
 			label4 = new Label();
 			dtpNgayNhap = new DateTimePicker();
@@ -62,8 +64,6 @@
 			btnXoaPhieu = new Button();
 			btnLuuPhieu = new Button();
 			btnLamMoi = new Button();
-			btnThemNCC = new Button();
-			btnXoaNCC = new Button();
 			groupBox1.SuspendLayout();
 			groupBox2.SuspendLayout();
 			panel1.SuspendLayout();
@@ -89,6 +89,25 @@
 			groupBox1.TabIndex = 0;
 			groupBox1.TabStop = false;
 			groupBox1.Text = "Thông tin phiếu nhập";
+			// 
+			// btnXoaNCC
+			// 
+			btnXoaNCC.Location = new Point(232, 114);
+			btnXoaNCC.Name = "btnXoaNCC";
+			btnXoaNCC.Size = new Size(131, 29);
+			btnXoaNCC.TabIndex = 20;
+			btnXoaNCC.Text = "Xóa NCC";
+			btnXoaNCC.UseVisualStyleBackColor = true;
+			// 
+			// btnThemNCC
+			// 
+			btnThemNCC.Location = new Point(68, 114);
+			btnThemNCC.Name = "btnThemNCC";
+			btnThemNCC.Size = new Size(131, 29);
+			btnThemNCC.TabIndex = 19;
+			btnThemNCC.Text = "Thêm NCC";
+			btnThemNCC.UseVisualStyleBackColor = true;
+			btnThemNCC.Click += btnThemNCC_Click;
 			// 
 			// txtMaNVNhap
 			// 
@@ -386,24 +405,6 @@
 			btnLamMoi.TabIndex = 0;
 			btnLamMoi.Text = "Làm mới";
 			btnLamMoi.UseVisualStyleBackColor = true;
-			// 
-			// btnThemNCC
-			// 
-			btnThemNCC.Location = new Point(68, 114);
-			btnThemNCC.Name = "btnThemNCC";
-			btnThemNCC.Size = new Size(131, 29);
-			btnThemNCC.TabIndex = 19;
-			btnThemNCC.Text = "Thêm NCC";
-			btnThemNCC.UseVisualStyleBackColor = true;
-			// 
-			// btnXoaNCC
-			// 
-			btnXoaNCC.Location = new Point(232, 114);
-			btnXoaNCC.Name = "btnXoaNCC";
-			btnXoaNCC.Size = new Size(131, 29);
-			btnXoaNCC.TabIndex = 20;
-			btnXoaNCC.Text = "Xóa NCC";
-			btnXoaNCC.UseVisualStyleBackColor = true;
 			// 
 			// frmKho
 			// 
