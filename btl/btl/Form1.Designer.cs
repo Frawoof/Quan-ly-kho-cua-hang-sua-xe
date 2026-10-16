@@ -42,8 +42,8 @@
 			panel1 = new Panel();
 			groupBox2 = new GroupBox();
 			btnLamMoiPhuTung = new Button();
-			XoaThongTin = new Button();
-			btnSuaThongTin = new Button();
+			btnXoaPhuTung = new Button();
+			btnSuaPhuTung = new Button();
 			btnThemPhuTung = new Button();
 			txtThanhTien = new TextBox();
 			label10 = new Label();
@@ -161,6 +161,7 @@
 			cbNhaCungCap.Name = "cbNhaCungCap";
 			cbNhaCungCap.Size = new Size(246, 28);
 			cbNhaCungCap.TabIndex = 3;
+			cbNhaCungCap.TextChanged += cbNhaCungCap_TextChanged;
 			// 
 			// label2
 			// 
@@ -200,8 +201,8 @@
 			// groupBox2
 			// 
 			groupBox2.Controls.Add(btnLamMoiPhuTung);
-			groupBox2.Controls.Add(XoaThongTin);
-			groupBox2.Controls.Add(btnSuaThongTin);
+			groupBox2.Controls.Add(btnXoaPhuTung);
+			groupBox2.Controls.Add(btnSuaPhuTung);
 			groupBox2.Controls.Add(btnThemPhuTung);
 			groupBox2.Controls.Add(txtThanhTien);
 			groupBox2.Controls.Add(label10);
@@ -232,23 +233,25 @@
 			btnLamMoiPhuTung.Text = "Làm mới";
 			btnLamMoiPhuTung.UseVisualStyleBackColor = true;
 			// 
-			// XoaThongTin
+			// btnXoaPhuTung
 			// 
-			XoaThongTin.Location = new Point(397, 165);
-			XoaThongTin.Name = "XoaThongTin";
-			XoaThongTin.Size = new Size(141, 46);
-			XoaThongTin.TabIndex = 18;
-			XoaThongTin.Text = "Xóa thông tin";
-			XoaThongTin.UseVisualStyleBackColor = true;
+			btnXoaPhuTung.Location = new Point(397, 165);
+			btnXoaPhuTung.Name = "btnXoaPhuTung";
+			btnXoaPhuTung.Size = new Size(141, 46);
+			btnXoaPhuTung.TabIndex = 18;
+			btnXoaPhuTung.Text = "Xóa thông tin";
+			btnXoaPhuTung.UseVisualStyleBackColor = true;
+			btnXoaPhuTung.Click += btnXoaPhuTung_Click;
 			// 
-			// btnSuaThongTin
+			// btnSuaPhuTung
 			// 
-			btnSuaThongTin.Location = new Point(205, 165);
-			btnSuaThongTin.Name = "btnSuaThongTin";
-			btnSuaThongTin.Size = new Size(141, 46);
-			btnSuaThongTin.TabIndex = 17;
-			btnSuaThongTin.Text = "Sửa thông tin";
-			btnSuaThongTin.UseVisualStyleBackColor = true;
+			btnSuaPhuTung.Location = new Point(205, 165);
+			btnSuaPhuTung.Name = "btnSuaPhuTung";
+			btnSuaPhuTung.Size = new Size(141, 46);
+			btnSuaPhuTung.TabIndex = 17;
+			btnSuaPhuTung.Text = "Sửa thông tin";
+			btnSuaPhuTung.UseVisualStyleBackColor = true;
+			btnSuaPhuTung.Click += btnSuaPhuTung_Click;
 			// 
 			// btnThemPhuTung
 			// 
@@ -298,6 +301,7 @@
 			txtDonGiaNhap.Name = "txtDonGiaNhap";
 			txtDonGiaNhap.Size = new Size(250, 27);
 			txtDonGiaNhap.TabIndex = 13;
+			txtDonGiaNhap.TextChanged += txtDonGiaNhap_TextChanged;
 			// 
 			// label8
 			// 
@@ -314,6 +318,7 @@
 			txtSoLuongNhap.Name = "txtSoLuongNhap";
 			txtSoLuongNhap.Size = new Size(246, 27);
 			txtSoLuongNhap.TabIndex = 11;
+			txtSoLuongNhap.TextChanged += txtSoLuongNhap_TextChanged;
 			// 
 			// label7
 			// 
@@ -366,6 +371,7 @@
 			dgvPhuTung.RowHeadersWidth = 51;
 			dgvPhuTung.Size = new Size(1289, 287);
 			dgvPhuTung.TabIndex = 0;
+			dgvPhuTung.CellClick += dgvPhuTung_CellClick;
 			// 
 			// colMaPhieu
 			// 
@@ -561,8 +567,8 @@
 		private DataGridViewTextBoxColumn colHanSuDung;
 		private DataGridViewTextBoxColumn colMaNVNhap;
 		private GroupBox groupBox2;
-		private Button XoaThongTin;
-		private Button btnSuaThongTin;
+		private Button btnXoaPhuTung;
+		private Button btnSuaPhuTung;
 		private Button btnThemPhuTung;
 		private TextBox txtThanhTien;
 		private Label label10;
