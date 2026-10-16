@@ -29,8 +29,11 @@ namespace btl
 			frmThemNCC form = new frmThemNCC();
 			form.ShowDialog();
 			
-			function.AddComboBox(cbNhaCungCap, dtbase.ReadData("Select TenNCC, MaNCC From NhaCungCap"), "TenNCC", "MaNCC");
-			cbNhaCungCap.SelectedIndex = -1;
+			if(form.DialogResult == DialogResult.OK)
+			{
+				function.AddComboBox(cbNhaCungCap, dtbase.ReadData("Select TenNCC, MaNCC From NhaCungCap"), "TenNCC", "MaNCC");
+				cbNhaCungCap.SelectedIndex = -1;
+			}
 		}
 
 		private void btnXoaNCC_Click(object sender, EventArgs e)
