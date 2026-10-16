@@ -42,6 +42,7 @@ namespace btl
 			dtbase.ChangeData(sql);
 
 			MessageBox.Show("Thêm thành công!", "Thông báo");
+
 			this.Close();
 		}
 

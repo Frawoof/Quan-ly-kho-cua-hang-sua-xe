@@ -27,7 +27,29 @@ namespace btl
 		private void btnThemNCC_Click(object sender, EventArgs e)
 		{
 			frmThemNCC form = new frmThemNCC();
-			form.Show();
+			form.ShowDialog();
+			
+			function.AddComboBox(cbNhaCungCap, dtbase.ReadData("Select TenNCC, MaNCC From NhaCungCap"), "TenNCC", "MaNCC");
+			cbNhaCungCap.SelectedIndex = -1;
+		}
+
+		private void btnXoaNCC_Click(object sender, EventArgs e)
+		{
+			if (cbNhaCungCap.SelectedValue == null ||cbNhaCungCap.Text.Trim() == "")
+			{
+				MessageBox.Show("Chọn nhà cung cấp muốn xóa!", "Thông báo");
+				return;
+			}
+
+			if (MessageBox.Show("Chắc chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				string sql = "Delete From NhaCungCap Where MaNCC = '" + cbNhaCungCap.SelectedValue.ToString() + "'";
+				dtbase.ChangeData(sql);
+
+				MessageBox.Show("Xóa thành công!", "Thông báo");
+				function.AddComboBox(cbNhaCungCap, dtbase.ReadData("Select TenNCC, MaNCC From NhaCungCap"), "TenNCC", "MaNCC");
+				cbNhaCungCap.SelectedIndex = -1;
+			}
 		}
 	}
 }

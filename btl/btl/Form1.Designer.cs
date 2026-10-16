@@ -98,6 +98,7 @@
 			btnXoaNCC.TabIndex = 20;
 			btnXoaNCC.Text = "Xóa NCC";
 			btnXoaNCC.UseVisualStyleBackColor = true;
+			btnXoaNCC.Click += btnXoaNCC_Click;
 			// 
 			// btnThemNCC
 			// 
