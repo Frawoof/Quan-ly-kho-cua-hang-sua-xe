@@ -39,7 +39,9 @@
 			label2 = new Label();
 			txtMaPhieuNhap = new TextBox();
 			label1 = new Label();
+			panel1 = new Panel();
 			groupBox2 = new GroupBox();
+			btnLamMoiPhuTung = new Button();
 			XoaThongTin = new Button();
 			btnSuaThongTin = new Button();
 			btnThemPhuTung = new Button();
@@ -55,8 +57,17 @@
 			label6 = new Label();
 			cbMaPhuTung = new ComboBox();
 			label5 = new Label();
-			panel1 = new Panel();
 			dgvPhuTung = new DataGridView();
+			colMaPhieu = new DataGridViewTextBoxColumn();
+			colTenNCC = new DataGridViewTextBoxColumn();
+			colNgayNhap = new DataGridViewTextBoxColumn();
+			colMaPhuTung = new DataGridViewTextBoxColumn();
+			colTenPhuTung = new DataGridViewTextBoxColumn();
+			colSoLuongNhap = new DataGridViewTextBoxColumn();
+			colDonGiaNhap = new DataGridViewTextBoxColumn();
+			colThanhTien = new DataGridViewTextBoxColumn();
+			colHanSuDung = new DataGridViewTextBoxColumn();
+			colMaNVNhap = new DataGridViewTextBoxColumn();
 			panel2 = new Panel();
 			btnInPhieu = new Button();
 			btnSuaPhieu = new Button();
@@ -65,8 +76,8 @@
 			btnLuuPhieu = new Button();
 			btnLamMoi = new Button();
 			groupBox1.SuspendLayout();
-			groupBox2.SuspendLayout();
 			panel1.SuspendLayout();
+			groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)dgvPhuTung).BeginInit();
 			panel2.SuspendLayout();
 			SuspendLayout();
@@ -83,18 +94,19 @@
 			groupBox1.Controls.Add(label2);
 			groupBox1.Controls.Add(txtMaPhieuNhap);
 			groupBox1.Controls.Add(label1);
-			groupBox1.Location = new Point(12, 12);
+			groupBox1.Dock = DockStyle.Top;
+			groupBox1.Location = new Point(0, 0);
 			groupBox1.Name = "groupBox1";
-			groupBox1.Size = new Size(915, 154);
+			groupBox1.Size = new Size(1295, 154);
 			groupBox1.TabIndex = 0;
 			groupBox1.TabStop = false;
 			groupBox1.Text = "Thông tin phiếu nhập";
 			// 
 			// btnXoaNCC
 			// 
-			btnXoaNCC.Location = new Point(232, 114);
+			btnXoaNCC.Location = new Point(645, 80);
 			btnXoaNCC.Name = "btnXoaNCC";
-			btnXoaNCC.Size = new Size(131, 29);
+			btnXoaNCC.Size = new Size(142, 46);
 			btnXoaNCC.TabIndex = 20;
 			btnXoaNCC.Text = "Xóa NCC";
 			btnXoaNCC.UseVisualStyleBackColor = true;
@@ -102,9 +114,9 @@
 			// 
 			// btnThemNCC
 			// 
-			btnThemNCC.Location = new Point(68, 114);
+			btnThemNCC.Location = new Point(454, 80);
 			btnThemNCC.Name = "btnThemNCC";
-			btnThemNCC.Size = new Size(131, 29);
+			btnThemNCC.Size = new Size(142, 46);
 			btnThemNCC.TabIndex = 19;
 			btnThemNCC.Text = "Thêm NCC";
 			btnThemNCC.UseVisualStyleBackColor = true;
@@ -112,7 +124,7 @@
 			// 
 			// txtMaNVNhap
 			// 
-			txtMaNVNhap.Location = new Point(627, 81);
+			txtMaNVNhap.Location = new Point(1020, 26);
 			txtMaNVNhap.Name = "txtMaNVNhap";
 			txtMaNVNhap.Size = new Size(250, 27);
 			txtMaNVNhap.TabIndex = 7;
@@ -120,7 +132,7 @@
 			// label4
 			// 
 			label4.AutoSize = true;
-			label4.Location = new Point(501, 87);
+			label4.Location = new Point(894, 32);
 			label4.Name = "label4";
 			label4.Size = new Size(94, 20);
 			label4.TabIndex = 6;
@@ -128,7 +140,7 @@
 			// 
 			// dtpNgayNhap
 			// 
-			dtpNgayNhap.Location = new Point(627, 26);
+			dtpNgayNhap.Location = new Point(580, 25);
 			dtpNgayNhap.Name = "dtpNgayNhap";
 			dtpNgayNhap.Size = new Size(250, 27);
 			dtpNgayNhap.TabIndex = 5;
@@ -136,7 +148,7 @@
 			// label3
 			// 
 			label3.AutoSize = true;
-			label3.Location = new Point(501, 33);
+			label3.Location = new Point(454, 32);
 			label3.Name = "label3";
 			label3.Size = new Size(84, 20);
 			label3.TabIndex = 4;
@@ -145,7 +157,7 @@
 			// cbNhaCungCap
 			// 
 			cbNhaCungCap.FormattingEnabled = true;
-			cbNhaCungCap.Location = new Point(149, 80);
+			cbNhaCungCap.Location = new Point(149, 90);
 			cbNhaCungCap.Name = "cbNhaCungCap";
 			cbNhaCungCap.Size = new Size(246, 28);
 			cbNhaCungCap.TabIndex = 3;
@@ -153,7 +165,7 @@
 			// label2
 			// 
 			label2.AutoSize = true;
-			label2.Location = new Point(20, 87);
+			label2.Location = new Point(20, 97);
 			label2.Name = "label2";
 			label2.Size = new Size(103, 20);
 			label2.TabIndex = 2;
@@ -175,8 +187,19 @@
 			label1.TabIndex = 0;
 			label1.Text = "Mã phiếu nhập:";
 			// 
+			// panel1
+			// 
+			panel1.Controls.Add(groupBox2);
+			panel1.Controls.Add(dgvPhuTung);
+			panel1.Dock = DockStyle.Fill;
+			panel1.Location = new Point(0, 154);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(1295, 647);
+			panel1.TabIndex = 2;
+			// 
 			// groupBox2
 			// 
+			groupBox2.Controls.Add(btnLamMoiPhuTung);
 			groupBox2.Controls.Add(XoaThongTin);
 			groupBox2.Controls.Add(btnSuaThongTin);
 			groupBox2.Controls.Add(btnThemPhuTung);
@@ -192,43 +215,54 @@
 			groupBox2.Controls.Add(label6);
 			groupBox2.Controls.Add(cbMaPhuTung);
 			groupBox2.Controls.Add(label5);
-			groupBox2.Location = new Point(12, 172);
+			groupBox2.Dock = DockStyle.Top;
+			groupBox2.Location = new Point(0, 0);
 			groupBox2.Name = "groupBox2";
-			groupBox2.Size = new Size(915, 264);
-			groupBox2.TabIndex = 1;
+			groupBox2.Size = new Size(1295, 248);
+			groupBox2.TabIndex = 2;
 			groupBox2.TabStop = false;
 			groupBox2.Text = "Thông tin phụ tùng";
 			// 
+			// btnLamMoiPhuTung
+			// 
+			btnLamMoiPhuTung.Location = new Point(589, 165);
+			btnLamMoiPhuTung.Name = "btnLamMoiPhuTung";
+			btnLamMoiPhuTung.Size = new Size(141, 46);
+			btnLamMoiPhuTung.TabIndex = 19;
+			btnLamMoiPhuTung.Text = "Làm mới";
+			btnLamMoiPhuTung.UseVisualStyleBackColor = true;
+			// 
 			// XoaThongTin
 			// 
-			XoaThongTin.Location = new Point(336, 215);
+			XoaThongTin.Location = new Point(397, 165);
 			XoaThongTin.Name = "XoaThongTin";
-			XoaThongTin.Size = new Size(131, 29);
+			XoaThongTin.Size = new Size(141, 46);
 			XoaThongTin.TabIndex = 18;
 			XoaThongTin.Text = "Xóa thông tin";
 			XoaThongTin.UseVisualStyleBackColor = true;
 			// 
 			// btnSuaThongTin
 			// 
-			btnSuaThongTin.Location = new Point(177, 215);
+			btnSuaThongTin.Location = new Point(205, 165);
 			btnSuaThongTin.Name = "btnSuaThongTin";
-			btnSuaThongTin.Size = new Size(131, 29);
+			btnSuaThongTin.Size = new Size(141, 46);
 			btnSuaThongTin.TabIndex = 17;
 			btnSuaThongTin.Text = "Sửa thông tin";
 			btnSuaThongTin.UseVisualStyleBackColor = true;
 			// 
 			// btnThemPhuTung
 			// 
-			btnThemPhuTung.Location = new Point(20, 215);
+			btnThemPhuTung.Location = new Point(20, 165);
 			btnThemPhuTung.Name = "btnThemPhuTung";
-			btnThemPhuTung.Size = new Size(131, 29);
+			btnThemPhuTung.Size = new Size(141, 46);
 			btnThemPhuTung.TabIndex = 16;
 			btnThemPhuTung.Text = "Thêm phụ tùng";
 			btnThemPhuTung.UseVisualStyleBackColor = true;
+			btnThemPhuTung.Click += btnThemPhuTung_Click;
 			// 
 			// txtThanhTien
 			// 
-			txtThanhTien.Location = new Point(627, 169);
+			txtThanhTien.Location = new Point(1020, 107);
 			txtThanhTien.Name = "txtThanhTien";
 			txtThanhTien.Size = new Size(250, 27);
 			txtThanhTien.TabIndex = 15;
@@ -236,7 +270,7 @@
 			// label10
 			// 
 			label10.AutoSize = true;
-			label10.Location = new Point(501, 169);
+			label10.Location = new Point(897, 110);
 			label10.Name = "label10";
 			label10.Size = new Size(81, 20);
 			label10.TabIndex = 14;
@@ -244,15 +278,15 @@
 			// 
 			// dtpHanSuDung
 			// 
-			dtpHanSuDung.Location = new Point(149, 166);
+			dtpHanSuDung.Location = new Point(1020, 50);
 			dtpHanSuDung.Name = "dtpHanSuDung";
-			dtpHanSuDung.Size = new Size(246, 27);
+			dtpHanSuDung.Size = new Size(250, 27);
 			dtpHanSuDung.TabIndex = 9;
 			// 
 			// label9
 			// 
 			label9.AutoSize = true;
-			label9.Location = new Point(18, 169);
+			label9.Location = new Point(894, 52);
 			label9.Name = "label9";
 			label9.Size = new Size(96, 20);
 			label9.TabIndex = 8;
@@ -260,7 +294,7 @@
 			// 
 			// txtDonGiaNhap
 			// 
-			txtDonGiaNhap.Location = new Point(627, 110);
+			txtDonGiaNhap.Location = new Point(580, 110);
 			txtDonGiaNhap.Name = "txtDonGiaNhap";
 			txtDonGiaNhap.Size = new Size(250, 27);
 			txtDonGiaNhap.TabIndex = 13;
@@ -268,7 +302,7 @@
 			// label8
 			// 
 			label8.AutoSize = true;
-			label8.Location = new Point(501, 110);
+			label8.Location = new Point(454, 110);
 			label8.Name = "label8";
 			label8.Size = new Size(102, 20);
 			label8.TabIndex = 12;
@@ -292,7 +326,7 @@
 			// 
 			// txtTenPhuTung
 			// 
-			txtTenPhuTung.Location = new Point(627, 50);
+			txtTenPhuTung.Location = new Point(580, 49);
 			txtTenPhuTung.Name = "txtTenPhuTung";
 			txtTenPhuTung.Size = new Size(250, 27);
 			txtTenPhuTung.TabIndex = 9;
@@ -300,7 +334,7 @@
 			// label6
 			// 
 			label6.AutoSize = true;
-			label6.Location = new Point(501, 52);
+			label6.Location = new Point(454, 51);
 			label6.Name = "label6";
 			label6.Size = new Size(98, 20);
 			label6.TabIndex = 8;
@@ -323,22 +357,85 @@
 			label5.TabIndex = 0;
 			label5.Text = "Mã phụ tùng:";
 			// 
-			// panel1
-			// 
-			panel1.Controls.Add(dgvPhuTung);
-			panel1.Location = new Point(12, 442);
-			panel1.Name = "panel1";
-			panel1.Size = new Size(915, 241);
-			panel1.TabIndex = 2;
-			// 
 			// dgvPhuTung
 			// 
 			dgvPhuTung.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dgvPhuTung.Location = new Point(3, 3);
+			dgvPhuTung.Columns.AddRange(new DataGridViewColumn[] { colMaPhieu, colTenNCC, colNgayNhap, colMaPhuTung, colTenPhuTung, colSoLuongNhap, colDonGiaNhap, colThanhTien, colHanSuDung, colMaNVNhap });
+			dgvPhuTung.Location = new Point(3, 254);
 			dgvPhuTung.Name = "dgvPhuTung";
 			dgvPhuTung.RowHeadersWidth = 51;
-			dgvPhuTung.Size = new Size(909, 235);
+			dgvPhuTung.Size = new Size(1289, 287);
 			dgvPhuTung.TabIndex = 0;
+			// 
+			// colMaPhieu
+			// 
+			colMaPhieu.HeaderText = "Mã phiếu nhập";
+			colMaPhieu.MinimumWidth = 6;
+			colMaPhieu.Name = "colMaPhieu";
+			colMaPhieu.Width = 125;
+			// 
+			// colTenNCC
+			// 
+			colTenNCC.HeaderText = "Nhà cung cấp";
+			colTenNCC.MinimumWidth = 6;
+			colTenNCC.Name = "colTenNCC";
+			colTenNCC.Width = 125;
+			// 
+			// colNgayNhap
+			// 
+			colNgayNhap.HeaderText = "Ngày nhập";
+			colNgayNhap.MinimumWidth = 6;
+			colNgayNhap.Name = "colNgayNhap";
+			colNgayNhap.Width = 125;
+			// 
+			// colMaPhuTung
+			// 
+			colMaPhuTung.HeaderText = "Mã phụ tùng";
+			colMaPhuTung.MinimumWidth = 6;
+			colMaPhuTung.Name = "colMaPhuTung";
+			colMaPhuTung.Width = 125;
+			// 
+			// colTenPhuTung
+			// 
+			colTenPhuTung.HeaderText = "Tên phụ tùng";
+			colTenPhuTung.MinimumWidth = 6;
+			colTenPhuTung.Name = "colTenPhuTung";
+			colTenPhuTung.Width = 125;
+			// 
+			// colSoLuongNhap
+			// 
+			colSoLuongNhap.HeaderText = "Số lượng nhập";
+			colSoLuongNhap.MinimumWidth = 6;
+			colSoLuongNhap.Name = "colSoLuongNhap";
+			colSoLuongNhap.Width = 125;
+			// 
+			// colDonGiaNhap
+			// 
+			colDonGiaNhap.HeaderText = "Đơn giá nhập";
+			colDonGiaNhap.MinimumWidth = 6;
+			colDonGiaNhap.Name = "colDonGiaNhap";
+			colDonGiaNhap.Width = 125;
+			// 
+			// colThanhTien
+			// 
+			colThanhTien.HeaderText = "Thành tiền";
+			colThanhTien.MinimumWidth = 6;
+			colThanhTien.Name = "colThanhTien";
+			colThanhTien.Width = 125;
+			// 
+			// colHanSuDung
+			// 
+			colHanSuDung.HeaderText = "Hạn sử dụng";
+			colHanSuDung.MinimumWidth = 6;
+			colHanSuDung.Name = "colHanSuDung";
+			colHanSuDung.Width = 125;
+			// 
+			// colMaNVNhap
+			// 
+			colMaNVNhap.HeaderText = "Mã NV nhập";
+			colMaNVNhap.MinimumWidth = 6;
+			colMaNVNhap.Name = "colMaNVNhap";
+			colMaNVNhap.Width = 125;
 			// 
 			// panel2
 			// 
@@ -348,9 +445,10 @@
 			panel2.Controls.Add(btnXoaPhieu);
 			panel2.Controls.Add(btnLuuPhieu);
 			panel2.Controls.Add(btnLamMoi);
-			panel2.Location = new Point(12, 689);
+			panel2.Dock = DockStyle.Bottom;
+			panel2.Location = new Point(0, 701);
 			panel2.Name = "panel2";
-			panel2.Size = new Size(915, 100);
+			panel2.Size = new Size(1295, 100);
 			panel2.TabIndex = 3;
 			// 
 			// btnInPhieu
@@ -411,19 +509,20 @@
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(939, 801);
+			ClientSize = new Size(1295, 801);
 			Controls.Add(panel2);
 			Controls.Add(panel1);
-			Controls.Add(groupBox2);
 			Controls.Add(groupBox1);
+			FormBorderStyle = FormBorderStyle.FixedSingle;
+			MaximizeBox = false;
 			Name = "frmKho";
 			Text = "Form Kho";
 			Load += frmKho_Load;
 			groupBox1.ResumeLayout(false);
 			groupBox1.PerformLayout();
+			panel1.ResumeLayout(false);
 			groupBox2.ResumeLayout(false);
 			groupBox2.PerformLayout();
-			panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)dgvPhuTung).EndInit();
 			panel2.ResumeLayout(false);
 			ResumeLayout(false);
@@ -440,7 +539,31 @@
 		private Label label2;
 		private TextBox txtMaPhieuNhap;
 		private Label label1;
+		private Panel panel1;
+		private DataGridView dgvPhuTung;
+		private Panel panel2;
+		private Button btnLamMoi;
+		private Button btnThoat;
+		private Button btnXoaPhieu;
+		private Button btnLuuPhieu;
+		private Button btnInPhieu;
+		private Button btnSuaPhieu;
+		private Button btnXoaNCC;
+		private Button btnThemNCC;
+		private DataGridViewTextBoxColumn colMaPhieu;
+		private DataGridViewTextBoxColumn colTenNCC;
+		private DataGridViewTextBoxColumn colNgayNhap;
+		private DataGridViewTextBoxColumn colMaPhuTung;
+		private DataGridViewTextBoxColumn colTenPhuTung;
+		private DataGridViewTextBoxColumn colSoLuongNhap;
+		private DataGridViewTextBoxColumn colDonGiaNhap;
+		private DataGridViewTextBoxColumn colThanhTien;
+		private DataGridViewTextBoxColumn colHanSuDung;
+		private DataGridViewTextBoxColumn colMaNVNhap;
 		private GroupBox groupBox2;
+		private Button XoaThongTin;
+		private Button btnSuaThongTin;
+		private Button btnThemPhuTung;
 		private TextBox txtThanhTien;
 		private Label label10;
 		private DateTimePicker dtpHanSuDung;
@@ -453,19 +576,6 @@
 		private Label label6;
 		private ComboBox cbMaPhuTung;
 		private Label label5;
-		private Panel panel1;
-		private DataGridView dgvPhuTung;
-		private Panel panel2;
-		private Button btnLamMoi;
-		private Button btnThoat;
-		private Button btnXoaPhieu;
-		private Button btnLuuPhieu;
-		private Button btnInPhieu;
-		private Button btnSuaPhieu;
-		private Button XoaThongTin;
-		private Button btnSuaThongTin;
-		private Button btnThemPhuTung;
-		private Button btnXoaNCC;
-		private Button btnThemNCC;
+		private Button btnLamMoiPhuTung;
 	}
 }

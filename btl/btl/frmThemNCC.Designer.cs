@@ -151,6 +151,8 @@
 			Controls.Add(txtMaNCC);
 			Controls.Add(label2);
 			Controls.Add(label1);
+			FormBorderStyle = FormBorderStyle.FixedSingle;
+			MaximizeBox = false;
 			Name = "frmThemNCC";
 			Text = "frmThemNCC";
 			Load += frmThemNCC_Load;
