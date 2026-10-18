@@ -107,3 +107,26 @@ ALTER TABLE PhuTung
 ADD TrangThai BIT NOT NULL
     CONSTRAINT DF_PhuTung_TrangThai DEFAULT 1;
 GO
+
+UPDATE ChiTietPhieuNhap
+SET HanSuDung = CASE MaCTPN
+    WHEN 2 THEN '20271001'
+    WHEN 3 THEN '20271005'
+    WHEN 4 THEN '20271010'
+    WHEN 5 THEN '20271015'
+    WHEN 6 THEN '20271020'
+    ELSE HanSuDung
+END
+WHERE MaCTPN IN (2, 3, 4, 5, 6);
+GO
+
+UPDATE PhieuNhap
+SET NguoiNhap = N'Nguyễn Văn An'
+WHERE MaPhieuNhap = 'PN001'
+  AND NguoiNhap IS NULL;
+
+UPDATE PhieuNhap
+SET NguoiNhap = N'Trần Văn Bình'
+WHERE MaPhieuNhap = 'PN002'
+  AND NguoiNhap IS NULL;
+GO

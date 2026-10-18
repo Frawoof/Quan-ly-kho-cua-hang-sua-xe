@@ -254,6 +254,7 @@
 			btnSuaPhieuNhap.TabIndex = 6;
 			btnSuaPhieuNhap.Text = "Sửa phiếu nhập";
 			btnSuaPhieuNhap.UseVisualStyleBackColor = true;
+			btnSuaPhieuNhap.Click += btnSuaPhieuNhap_Click;
 			// 
 			// btnThemPhieuNhap
 			// 

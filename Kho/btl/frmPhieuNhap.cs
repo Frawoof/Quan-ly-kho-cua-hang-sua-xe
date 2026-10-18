@@ -61,5 +61,18 @@ namespace btl
 
 			frmPhieuNhap_Load(sender, e);
 		}
+
+		private void btnSuaPhieuNhap_Click(object sender, EventArgs e)
+		{
+			if(dgvPhieuNhap.Rows.Count == 0 || dgvPhieuNhap.CurrentRow.IsNewRow == true)
+			{
+				MessageBox.Show("Chọn phiếu cần sửa!", "Thống báo");
+				return;
+			}
+
+			string maPhieuNhap = dgvPhieuNhap.CurrentRow.Cells["colMaPhieuNhap"].Value.ToString();
+			frmNhapPhieuNhap formNhapPhieuNhap = new frmNhapPhieuNhap(maPhieuNhap);
+			formNhapPhieuNhap.ShowDialog();
+		}
 	}
 }

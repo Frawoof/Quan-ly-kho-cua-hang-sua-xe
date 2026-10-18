@@ -59,6 +59,9 @@
 			cbMaPhuTung = new ComboBox();
 			label5 = new Label();
 			dgvPhuTung = new DataGridView();
+			panel2 = new Panel();
+			btnThoat = new Button();
+			btnLuuPhieu = new Button();
 			colMaPhieu = new DataGridViewTextBoxColumn();
 			colTenNCC = new DataGridViewTextBoxColumn();
 			colNgayNhap = new DataGridViewTextBoxColumn();
@@ -69,9 +72,6 @@
 			colThanhTien = new DataGridViewTextBoxColumn();
 			colHanSuDung = new DataGridViewTextBoxColumn();
 			colMaNVNhap = new DataGridViewTextBoxColumn();
-			panel2 = new Panel();
-			btnThoat = new Button();
-			btnLuuPhieu = new Button();
 			groupBox1.SuspendLayout();
 			panel1.SuspendLayout();
 			groupBox2.SuspendLayout();
@@ -382,76 +382,6 @@
 			dgvPhuTung.TabIndex = 0;
 			dgvPhuTung.CellClick += dgvPhuTung_CellClick;
 			// 
-			// colMaPhieu
-			// 
-			colMaPhieu.HeaderText = "Mã phiếu nhập";
-			colMaPhieu.MinimumWidth = 6;
-			colMaPhieu.Name = "colMaPhieu";
-			colMaPhieu.Width = 125;
-			// 
-			// colTenNCC
-			// 
-			colTenNCC.HeaderText = "Nhà cung cấp";
-			colTenNCC.MinimumWidth = 6;
-			colTenNCC.Name = "colTenNCC";
-			colTenNCC.Width = 125;
-			// 
-			// colNgayNhap
-			// 
-			colNgayNhap.HeaderText = "Ngày nhập";
-			colNgayNhap.MinimumWidth = 6;
-			colNgayNhap.Name = "colNgayNhap";
-			colNgayNhap.Width = 125;
-			// 
-			// colMaPhuTung
-			// 
-			colMaPhuTung.HeaderText = "Mã phụ tùng";
-			colMaPhuTung.MinimumWidth = 6;
-			colMaPhuTung.Name = "colMaPhuTung";
-			colMaPhuTung.Width = 125;
-			// 
-			// colTenPhuTung
-			// 
-			colTenPhuTung.HeaderText = "Tên phụ tùng";
-			colTenPhuTung.MinimumWidth = 6;
-			colTenPhuTung.Name = "colTenPhuTung";
-			colTenPhuTung.Width = 125;
-			// 
-			// colSoLuongNhap
-			// 
-			colSoLuongNhap.HeaderText = "Số lượng nhập";
-			colSoLuongNhap.MinimumWidth = 6;
-			colSoLuongNhap.Name = "colSoLuongNhap";
-			colSoLuongNhap.Width = 125;
-			// 
-			// colDonGiaNhap
-			// 
-			colDonGiaNhap.HeaderText = "Đơn giá nhập";
-			colDonGiaNhap.MinimumWidth = 6;
-			colDonGiaNhap.Name = "colDonGiaNhap";
-			colDonGiaNhap.Width = 125;
-			// 
-			// colThanhTien
-			// 
-			colThanhTien.HeaderText = "Thành tiền";
-			colThanhTien.MinimumWidth = 6;
-			colThanhTien.Name = "colThanhTien";
-			colThanhTien.Width = 125;
-			// 
-			// colHanSuDung
-			// 
-			colHanSuDung.HeaderText = "Hạn sử dụng";
-			colHanSuDung.MinimumWidth = 6;
-			colHanSuDung.Name = "colHanSuDung";
-			colHanSuDung.Width = 125;
-			// 
-			// colMaNVNhap
-			// 
-			colMaNVNhap.HeaderText = "Mã NV nhập";
-			colMaNVNhap.MinimumWidth = 6;
-			colMaNVNhap.Name = "colMaNVNhap";
-			colMaNVNhap.Width = 125;
-			// 
 			// panel2
 			// 
 			panel2.Controls.Add(btnThoat);
@@ -481,6 +411,86 @@
 			btnLuuPhieu.Text = "Lưu phiếu";
 			btnLuuPhieu.UseVisualStyleBackColor = true;
 			btnLuuPhieu.Click += btnLuuPhieu_Click;
+			// 
+			// colMaPhieu
+			// 
+			colMaPhieu.DataPropertyName = "MaPhieuNhap";
+			colMaPhieu.HeaderText = "Mã phiếu nhập";
+			colMaPhieu.MinimumWidth = 6;
+			colMaPhieu.Name = "colMaPhieu";
+			colMaPhieu.Width = 125;
+			// 
+			// colTenNCC
+			// 
+			colTenNCC.DataPropertyName = "TenNCC";
+			colTenNCC.HeaderText = "Nhà cung cấp";
+			colTenNCC.MinimumWidth = 6;
+			colTenNCC.Name = "colTenNCC";
+			colTenNCC.Width = 125;
+			// 
+			// colNgayNhap
+			// 
+			colNgayNhap.DataPropertyName = "NgayNhap";
+			colNgayNhap.HeaderText = "Ngày nhập";
+			colNgayNhap.MinimumWidth = 6;
+			colNgayNhap.Name = "colNgayNhap";
+			colNgayNhap.Width = 125;
+			// 
+			// colMaPhuTung
+			// 
+			colMaPhuTung.DataPropertyName = "MaPhuTung";
+			colMaPhuTung.HeaderText = "Mã phụ tùng";
+			colMaPhuTung.MinimumWidth = 6;
+			colMaPhuTung.Name = "colMaPhuTung";
+			colMaPhuTung.Width = 125;
+			// 
+			// colTenPhuTung
+			// 
+			colTenPhuTung.DataPropertyName = "TenPhuTung";
+			colTenPhuTung.HeaderText = "Tên phụ tùng";
+			colTenPhuTung.MinimumWidth = 6;
+			colTenPhuTung.Name = "colTenPhuTung";
+			colTenPhuTung.Width = 125;
+			// 
+			// colSoLuongNhap
+			// 
+			colSoLuongNhap.DataPropertyName = "SoLuongNhap";
+			colSoLuongNhap.HeaderText = "Số lượng nhập";
+			colSoLuongNhap.MinimumWidth = 6;
+			colSoLuongNhap.Name = "colSoLuongNhap";
+			colSoLuongNhap.Width = 125;
+			// 
+			// colDonGiaNhap
+			// 
+			colDonGiaNhap.DataPropertyName = "DonGiaNhap";
+			colDonGiaNhap.HeaderText = "Đơn giá nhập";
+			colDonGiaNhap.MinimumWidth = 6;
+			colDonGiaNhap.Name = "colDonGiaNhap";
+			colDonGiaNhap.Width = 125;
+			// 
+			// colThanhTien
+			// 
+			colThanhTien.DataPropertyName = "ThanhTien";
+			colThanhTien.HeaderText = "Thành tiền";
+			colThanhTien.MinimumWidth = 6;
+			colThanhTien.Name = "colThanhTien";
+			colThanhTien.Width = 125;
+			// 
+			// colHanSuDung
+			// 
+			colHanSuDung.DataPropertyName = "HanSuDung";
+			colHanSuDung.HeaderText = "Hạn sử dụng";
+			colHanSuDung.MinimumWidth = 6;
+			colHanSuDung.Name = "colHanSuDung";
+			colHanSuDung.Width = 125;
+			// 
+			// colMaNVNhap
+			// 
+			colMaNVNhap.DataPropertyName = "NguoiNhap";
+			colMaNVNhap.HeaderText = "Mã NV nhập";
+			colMaNVNhap.MinimumWidth = 6;
+			colMaNVNhap.Name = "colMaNVNhap";
+			colMaNVNhap.Width = 125;
 			// 
 			// frmNhapPhieuNhap
 			// 
@@ -523,16 +533,6 @@
 		private Button btnLuuPhieu;
 		private Button btnXoaNCC;
 		private Button btnThemNCC;
-		private DataGridViewTextBoxColumn colMaPhieu;
-		private DataGridViewTextBoxColumn colTenNCC;
-		private DataGridViewTextBoxColumn colNgayNhap;
-		private DataGridViewTextBoxColumn colMaPhuTung;
-		private DataGridViewTextBoxColumn colTenPhuTung;
-		private DataGridViewTextBoxColumn colSoLuongNhap;
-		private DataGridViewTextBoxColumn colDonGiaNhap;
-		private DataGridViewTextBoxColumn colThanhTien;
-		private DataGridViewTextBoxColumn colHanSuDung;
-		private DataGridViewTextBoxColumn colMaNVNhap;
 		private GroupBox groupBox2;
 		private Button btnXoaPhuTung;
 		private Button btnSuaPhuTung;
@@ -551,5 +551,15 @@
 		private Label label5;
 		private Button btnLamMoiPhuTung;
 		private Button btnHuyPhuTung;
+		private DataGridViewTextBoxColumn colMaPhieu;
+		private DataGridViewTextBoxColumn colTenNCC;
+		private DataGridViewTextBoxColumn colNgayNhap;
+		private DataGridViewTextBoxColumn colMaPhuTung;
+		private DataGridViewTextBoxColumn colTenPhuTung;
+		private DataGridViewTextBoxColumn colSoLuongNhap;
+		private DataGridViewTextBoxColumn colDonGiaNhap;
+		private DataGridViewTextBoxColumn colThanhTien;
+		private DataGridViewTextBoxColumn colHanSuDung;
+		private DataGridViewTextBoxColumn colMaNVNhap;
 	}
 }
