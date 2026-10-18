@@ -24,10 +24,44 @@ namespace btl
 				"From PhuTung pt Join ChiTietPhieuNhap ct On pt.MaPhuTung = ct.MaPhuTung " +
 				"Join PhieuNhap pn On ct.MaPhieuNhap = pn.MaPhieuNhap " +
 				"Join NhaCungCap ncc On pn.MaNCC = ncc.MaNCC " +
+				"Where pt.TrangThai = 1" +
 				"Order By pt.MaPhuTung Asc";
 
 			dgvPhuTung.AutoGenerateColumns = false;
 			dgvPhuTung.DataSource = dtbase.ReadData(sqlPhuTung);
+		}
+
+		private void btnDanhSachPhieuNhap_Click(object sender, EventArgs e)
+		{
+			frmPhieuNhap formPhieuNhap = new frmPhieuNhap();
+			formPhieuNhap.Show();
+		}
+
+		private void btnThoat_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("Chắc chắn thoát?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				this.Close();
+			}
+		}
+
+		private void btnNgungSuDung_Click(object sender, EventArgs e)
+		{
+			if (dgvPhuTung.CurrentRow == null)
+			{
+				MessageBox.Show("Chưa chọn phụ tùng!", "Thông báo");
+				return;
+			}
+
+			if (MessageBox.Show("Chắc chắn muốn ngưng sử dụng?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				string maPhuTung = dgvPhuTung.CurrentRow.Cells["colMaPhuTung"].Value.ToString();
+				string sqlUpdateTrangThai = "Update PhuTung Set TrangThai = 0 Where MaPhuTung = '" + maPhuTung + "'";
+
+				dtbase.ChangeData(sqlUpdateTrangThai);
+
+				frmKho_Load(sender, e);
+			}
 		}
 	}
 }

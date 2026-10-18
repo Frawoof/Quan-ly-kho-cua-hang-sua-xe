@@ -31,16 +31,16 @@
 			panel1 = new Panel();
 			label1 = new Label();
 			groupBox1 = new GroupBox();
-			btnPhieuNhap = new Button();
-			btnHuyPhuTung = new Button();
-			btnXoaPhuTung = new Button();
+			btnNgungSuDung = new Button();
+			btnThoat = new Button();
+			btnDanhSachPhieuNhap = new Button();
 			dgvPhuTung = new DataGridView();
-			panel2 = new Panel();
 			colMaPhuTung = new DataGridViewTextBoxColumn();
 			colTenPhuTung = new DataGridViewTextBoxColumn();
 			colSoLuongTon = new DataGridViewTextBoxColumn();
 			colTenNCC = new DataGridViewTextBoxColumn();
 			colHanSuDung = new DataGridViewTextBoxColumn();
+			panel2 = new Panel();
 			panel1.SuspendLayout();
 			groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)dgvPhuTung).BeginInit();
@@ -66,9 +66,9 @@
 			// 
 			// groupBox1
 			// 
-			groupBox1.Controls.Add(btnPhieuNhap);
-			groupBox1.Controls.Add(btnHuyPhuTung);
-			groupBox1.Controls.Add(btnXoaPhuTung);
+			groupBox1.Controls.Add(btnNgungSuDung);
+			groupBox1.Controls.Add(btnThoat);
+			groupBox1.Controls.Add(btnDanhSachPhieuNhap);
 			groupBox1.Controls.Add(dgvPhuTung);
 			groupBox1.Location = new Point(3, 3);
 			groupBox1.Name = "groupBox1";
@@ -77,35 +77,41 @@
 			groupBox1.TabStop = false;
 			groupBox1.Text = "Danh sách phụ tùng";
 			// 
-			// btnPhieuNhap
+			// btnNgungSuDung
 			// 
-			btnPhieuNhap.Location = new Point(16, 296);
-			btnPhieuNhap.Name = "btnPhieuNhap";
-			btnPhieuNhap.Size = new Size(127, 49);
-			btnPhieuNhap.TabIndex = 14;
-			btnPhieuNhap.Text = "Phiếu nhập";
-			btnPhieuNhap.UseVisualStyleBackColor = true;
+			btnNgungSuDung.Location = new Point(650, 296);
+			btnNgungSuDung.Name = "btnNgungSuDung";
+			btnNgungSuDung.RightToLeft = RightToLeft.No;
+			btnNgungSuDung.Size = new Size(127, 49);
+			btnNgungSuDung.TabIndex = 16;
+			btnNgungSuDung.Text = "Ngưng sử dụng";
+			btnNgungSuDung.UseVisualStyleBackColor = true;
+			btnNgungSuDung.Click += btnNgungSuDung_Click;
 			// 
-			// btnHuyPhuTung
+			// btnThoat
 			// 
-			btnHuyPhuTung.Location = new Point(789, 296);
-			btnHuyPhuTung.Name = "btnHuyPhuTung";
-			btnHuyPhuTung.Size = new Size(127, 49);
-			btnHuyPhuTung.TabIndex = 13;
-			btnHuyPhuTung.Text = "Hủy";
-			btnHuyPhuTung.UseVisualStyleBackColor = true;
+			btnThoat.Location = new Point(806, 296);
+			btnThoat.Name = "btnThoat";
+			btnThoat.RightToLeft = RightToLeft.No;
+			btnThoat.Size = new Size(127, 49);
+			btnThoat.TabIndex = 15;
+			btnThoat.Text = "Thoát";
+			btnThoat.UseVisualStyleBackColor = true;
 			// 
-			// btnXoaPhuTung
+			// btnDanhSachPhieuNhap
 			// 
-			btnXoaPhuTung.Location = new Point(639, 296);
-			btnXoaPhuTung.Name = "btnXoaPhuTung";
-			btnXoaPhuTung.Size = new Size(127, 49);
-			btnXoaPhuTung.TabIndex = 12;
-			btnXoaPhuTung.Text = "Xóa";
-			btnXoaPhuTung.UseVisualStyleBackColor = true;
+			btnDanhSachPhieuNhap.Location = new Point(16, 296);
+			btnDanhSachPhieuNhap.Name = "btnDanhSachPhieuNhap";
+			btnDanhSachPhieuNhap.Size = new Size(201, 49);
+			btnDanhSachPhieuNhap.TabIndex = 14;
+			btnDanhSachPhieuNhap.Text = "Danh sách phiếu nhập";
+			btnDanhSachPhieuNhap.UseVisualStyleBackColor = true;
+			btnDanhSachPhieuNhap.Click += btnDanhSachPhieuNhap_Click;
 			// 
 			// dgvPhuTung
 			// 
+			dgvPhuTung.AllowUserToAddRows = false;
+			dgvPhuTung.AllowUserToDeleteRows = false;
 			dgvPhuTung.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			dgvPhuTung.Columns.AddRange(new DataGridViewColumn[] { colMaPhuTung, colTenPhuTung, colSoLuongTon, colTenNCC, colHanSuDung });
 			dgvPhuTung.Location = new Point(6, 26);
@@ -113,14 +119,6 @@
 			dgvPhuTung.RowHeadersWidth = 51;
 			dgvPhuTung.Size = new Size(943, 250);
 			dgvPhuTung.TabIndex = 0;
-			// 
-			// panel2
-			// 
-			panel2.Controls.Add(groupBox1);
-			panel2.Location = new Point(12, 76);
-			panel2.Name = "panel2";
-			panel2.Size = new Size(958, 367);
-			panel2.TabIndex = 1;
 			// 
 			// colMaPhuTung
 			// 
@@ -162,6 +160,14 @@
 			colHanSuDung.Name = "colHanSuDung";
 			colHanSuDung.Width = 178;
 			// 
+			// panel2
+			// 
+			panel2.Controls.Add(groupBox1);
+			panel2.Location = new Point(12, 76);
+			panel2.Name = "panel2";
+			panel2.Size = new Size(958, 367);
+			panel2.TabIndex = 1;
+			// 
 			// frmKho
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
@@ -188,14 +194,15 @@
 		private Label label1;
 		private GroupBox groupBox1;
 		private Button btnHuyPhuTung;
-		private Button btnXoaPhuTung;
 		private DataGridView dgvPhuTung;
 		private Panel panel2;
-		private Button btnPhieuNhap;
+		private Button btnDanhSachPhieuNhap;
 		private DataGridViewTextBoxColumn colMaPhuTung;
 		private DataGridViewTextBoxColumn colTenPhuTung;
 		private DataGridViewTextBoxColumn colSoLuongTon;
 		private DataGridViewTextBoxColumn colTenNCC;
 		private DataGridViewTextBoxColumn colHanSuDung;
+		private Button btnThoat;
+		private Button btnNgungSuDung;
 	}
 }

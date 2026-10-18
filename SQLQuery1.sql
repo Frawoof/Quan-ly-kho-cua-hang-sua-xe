@@ -102,3 +102,8 @@ OUTER APPLY
     WHERE CT.MaPhuTung = PT.MaPhuTung
 ) Tong;
 GO
+
+ALTER TABLE PhuTung
+ADD TrangThai BIT NOT NULL
+    CONSTRAINT DF_PhuTung_TrangThai DEFAULT 1;
+GO

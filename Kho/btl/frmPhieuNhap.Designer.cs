@@ -29,13 +29,21 @@
 		private void InitializeComponent()
 		{
 			dgvPhieuNhap = new DataGridView();
+			colMaPhieuNhap = new DataGridViewTextBoxColumn();
+			colNgayNhap = new DataGridViewTextBoxColumn();
+			colTongSoLuongNhap = new DataGridViewTextBoxColumn();
+			colThanhTienNhap = new DataGridViewTextBoxColumn();
+			colMaNVNhap = new DataGridViewTextBoxColumn();
 			groupBox2 = new GroupBox();
 			dgvChiTiet = new DataGridView();
-			dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-			dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-			dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-			dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-			dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+			colChiTietMaPhieuNhap = new DataGridViewTextBoxColumn();
+			colChiTietTenNCC = new DataGridViewTextBoxColumn();
+			colChiTietMaPhuTung = new DataGridViewTextBoxColumn();
+			colChiTietTenPhuTung = new DataGridViewTextBoxColumn();
+			colChiTietSoLuongNhap = new DataGridViewTextBoxColumn();
+			colChiTietDonGiaNhap = new DataGridViewTextBoxColumn();
+			colChiTietThanhTien = new DataGridViewTextBoxColumn();
+			colChiTietHanSuDung = new DataGridViewTextBoxColumn();
 			groupBox3 = new GroupBox();
 			panel1 = new Panel();
 			btnThoat = new Button();
@@ -43,11 +51,6 @@
 			btnXoaPhieuNhap = new Button();
 			btnSuaPhieuNhap = new Button();
 			btnThemPhieuNhap = new Button();
-			colMaPhieuNhap = new DataGridViewTextBoxColumn();
-			colNgayNhap = new DataGridViewTextBoxColumn();
-			colTongSoLuongNhap = new DataGridViewTextBoxColumn();
-			colThanhTienNhap = new DataGridViewTextBoxColumn();
-			colMaNVNhap = new DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)dgvPhieuNhap).BeginInit();
 			groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)dgvChiTiet).BeginInit();
@@ -57,6 +60,8 @@
 			// 
 			// dgvPhieuNhap
 			// 
+			dgvPhieuNhap.AllowUserToAddRows = false;
+			dgvPhieuNhap.AllowUserToDeleteRows = false;
 			dgvPhieuNhap.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			dgvPhieuNhap.Columns.AddRange(new DataGridViewColumn[] { colMaPhieuNhap, colNgayNhap, colTongSoLuongNhap, colThanhTienNhap, colMaNVNhap });
 			dgvPhieuNhap.Location = new Point(6, 26);
@@ -64,6 +69,47 @@
 			dgvPhieuNhap.RowHeadersWidth = 51;
 			dgvPhieuNhap.Size = new Size(846, 267);
 			dgvPhieuNhap.TabIndex = 0;
+			dgvPhieuNhap.CellClick += dgvPhieuNhap_CellClick;
+			// 
+			// colMaPhieuNhap
+			// 
+			colMaPhieuNhap.DataPropertyName = "MaPhieuNhap";
+			colMaPhieuNhap.HeaderText = "Mã phiếu nhập";
+			colMaPhieuNhap.MinimumWidth = 6;
+			colMaPhieuNhap.Name = "colMaPhieuNhap";
+			colMaPhieuNhap.Width = 140;
+			// 
+			// colNgayNhap
+			// 
+			colNgayNhap.DataPropertyName = "NgayNhap";
+			colNgayNhap.HeaderText = "Ngày nhập";
+			colNgayNhap.MinimumWidth = 6;
+			colNgayNhap.Name = "colNgayNhap";
+			colNgayNhap.Width = 175;
+			// 
+			// colTongSoLuongNhap
+			// 
+			colTongSoLuongNhap.DataPropertyName = "TongSoLuongNhap";
+			colTongSoLuongNhap.HeaderText = "Tổng số lượng nhập";
+			colTongSoLuongNhap.MinimumWidth = 6;
+			colTongSoLuongNhap.Name = "colTongSoLuongNhap";
+			colTongSoLuongNhap.Width = 125;
+			// 
+			// colThanhTienNhap
+			// 
+			colThanhTienNhap.DataPropertyName = "ThanhTien";
+			colThanhTienNhap.HeaderText = "Thành tiền";
+			colThanhTienNhap.MinimumWidth = 6;
+			colThanhTienNhap.Name = "colThanhTienNhap";
+			colThanhTienNhap.Width = 175;
+			// 
+			// colMaNVNhap
+			// 
+			colMaNVNhap.DataPropertyName = "NguoiNhap";
+			colMaNVNhap.HeaderText = "Mã NV nhập";
+			colMaNVNhap.MinimumWidth = 6;
+			colMaNVNhap.Name = "colMaNVNhap";
+			colMaNVNhap.Width = 200;
 			// 
 			// groupBox2
 			// 
@@ -77,48 +123,79 @@
 			// 
 			// dgvChiTiet
 			// 
+			dgvChiTiet.AllowUserToAddRows = false;
+			dgvChiTiet.AllowUserToDeleteRows = false;
 			dgvChiTiet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dgvChiTiet.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
+			dgvChiTiet.Columns.AddRange(new DataGridViewColumn[] { colChiTietMaPhieuNhap, colChiTietTenNCC, colChiTietMaPhuTung, colChiTietTenPhuTung, colChiTietSoLuongNhap, colChiTietDonGiaNhap, colChiTietThanhTien, colChiTietHanSuDung });
 			dgvChiTiet.Location = new Point(6, 26);
 			dgvChiTiet.Name = "dgvChiTiet";
 			dgvChiTiet.RowHeadersWidth = 51;
 			dgvChiTiet.Size = new Size(846, 267);
 			dgvChiTiet.TabIndex = 0;
 			// 
-			// dataGridViewTextBoxColumn1
+			// colChiTietMaPhieuNhap
 			// 
-			dataGridViewTextBoxColumn1.HeaderText = "Mã phiếu nhập";
-			dataGridViewTextBoxColumn1.MinimumWidth = 6;
-			dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-			dataGridViewTextBoxColumn1.Width = 125;
+			colChiTietMaPhieuNhap.DataPropertyName = "MaPhieuNhap";
+			colChiTietMaPhieuNhap.HeaderText = "Mã phiếu nhập";
+			colChiTietMaPhieuNhap.MinimumWidth = 6;
+			colChiTietMaPhieuNhap.Name = "colChiTietMaPhieuNhap";
+			colChiTietMaPhieuNhap.Width = 125;
 			// 
-			// dataGridViewTextBoxColumn2
+			// colChiTietTenNCC
 			// 
-			dataGridViewTextBoxColumn2.HeaderText = "Ngày nhập";
-			dataGridViewTextBoxColumn2.MinimumWidth = 6;
-			dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-			dataGridViewTextBoxColumn2.Width = 125;
+			colChiTietTenNCC.DataPropertyName = "TenNCC";
+			colChiTietTenNCC.HeaderText = "Nhà cung cấp";
+			colChiTietTenNCC.MinimumWidth = 6;
+			colChiTietTenNCC.Name = "colChiTietTenNCC";
+			colChiTietTenNCC.Width = 125;
 			// 
-			// dataGridViewTextBoxColumn3
+			// colChiTietMaPhuTung
 			// 
-			dataGridViewTextBoxColumn3.HeaderText = "Tổng số lượng nhập";
-			dataGridViewTextBoxColumn3.MinimumWidth = 6;
-			dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-			dataGridViewTextBoxColumn3.Width = 125;
+			colChiTietMaPhuTung.DataPropertyName = "MaPhuTung";
+			colChiTietMaPhuTung.HeaderText = "Mã phụ tùng";
+			colChiTietMaPhuTung.MinimumWidth = 6;
+			colChiTietMaPhuTung.Name = "colChiTietMaPhuTung";
+			colChiTietMaPhuTung.Width = 125;
 			// 
-			// dataGridViewTextBoxColumn4
+			// colChiTietTenPhuTung
 			// 
-			dataGridViewTextBoxColumn4.HeaderText = "Thành tiền";
-			dataGridViewTextBoxColumn4.MinimumWidth = 6;
-			dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-			dataGridViewTextBoxColumn4.Width = 125;
+			colChiTietTenPhuTung.DataPropertyName = "TenPhuTung";
+			colChiTietTenPhuTung.HeaderText = "Tên phụ tùng";
+			colChiTietTenPhuTung.MinimumWidth = 6;
+			colChiTietTenPhuTung.Name = "colChiTietTenPhuTung";
+			colChiTietTenPhuTung.Width = 125;
 			// 
-			// dataGridViewTextBoxColumn5
+			// colChiTietSoLuongNhap
 			// 
-			dataGridViewTextBoxColumn5.HeaderText = "Mã NV nhập";
-			dataGridViewTextBoxColumn5.MinimumWidth = 6;
-			dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-			dataGridViewTextBoxColumn5.Width = 125;
+			colChiTietSoLuongNhap.DataPropertyName = "SoLuongNhap";
+			colChiTietSoLuongNhap.HeaderText = "Số lượng nhập";
+			colChiTietSoLuongNhap.MinimumWidth = 6;
+			colChiTietSoLuongNhap.Name = "colChiTietSoLuongNhap";
+			colChiTietSoLuongNhap.Width = 125;
+			// 
+			// colChiTietDonGiaNhap
+			// 
+			colChiTietDonGiaNhap.DataPropertyName = "DonGiaNhap";
+			colChiTietDonGiaNhap.HeaderText = "Đơn giá nhập";
+			colChiTietDonGiaNhap.MinimumWidth = 6;
+			colChiTietDonGiaNhap.Name = "colChiTietDonGiaNhap";
+			colChiTietDonGiaNhap.Width = 125;
+			// 
+			// colChiTietThanhTien
+			// 
+			colChiTietThanhTien.DataPropertyName = "ThanhTien";
+			colChiTietThanhTien.HeaderText = "Thành Tiền";
+			colChiTietThanhTien.MinimumWidth = 6;
+			colChiTietThanhTien.Name = "colChiTietThanhTien";
+			colChiTietThanhTien.Width = 125;
+			// 
+			// colChiTietHanSuDung
+			// 
+			colChiTietHanSuDung.DataPropertyName = "HanSuDung";
+			colChiTietHanSuDung.HeaderText = "Hạn sử dụng";
+			colChiTietHanSuDung.MinimumWidth = 6;
+			colChiTietHanSuDung.Name = "colChiTietHanSuDung";
+			colChiTietHanSuDung.Width = 125;
 			// 
 			// groupBox3
 			// 
@@ -186,41 +263,7 @@
 			btnThemPhieuNhap.TabIndex = 5;
 			btnThemPhieuNhap.Text = "Thêm phiếu nhập";
 			btnThemPhieuNhap.UseVisualStyleBackColor = true;
-			// 
-			// colMaPhieuNhap
-			// 
-			colMaPhieuNhap.HeaderText = "Mã phiếu nhập";
-			colMaPhieuNhap.MinimumWidth = 6;
-			colMaPhieuNhap.Name = "colMaPhieuNhap";
-			colMaPhieuNhap.Width = 140;
-			// 
-			// colNgayNhap
-			// 
-			colNgayNhap.HeaderText = "Ngày nhập";
-			colNgayNhap.MinimumWidth = 6;
-			colNgayNhap.Name = "colNgayNhap";
-			colNgayNhap.Width = 175;
-			// 
-			// colTongSoLuongNhap
-			// 
-			colTongSoLuongNhap.HeaderText = "Tổng số lượng nhập";
-			colTongSoLuongNhap.MinimumWidth = 6;
-			colTongSoLuongNhap.Name = "colTongSoLuongNhap";
-			colTongSoLuongNhap.Width = 125;
-			// 
-			// colThanhTienNhap
-			// 
-			colThanhTienNhap.HeaderText = "Thành tiền";
-			colThanhTienNhap.MinimumWidth = 6;
-			colThanhTienNhap.Name = "colThanhTienNhap";
-			colThanhTienNhap.Width = 175;
-			// 
-			// colMaNVNhap
-			// 
-			colMaNVNhap.HeaderText = "Mã NV nhập";
-			colMaNVNhap.MinimumWidth = 6;
-			colMaNVNhap.Name = "colMaNVNhap";
-			colMaNVNhap.Width = 200;
+			btnThemPhieuNhap.Click += btnThemPhieuNhap_Click;
 			// 
 			// frmPhieuNhap
 			// 
@@ -234,6 +277,7 @@
 			MaximizeBox = false;
 			Name = "frmPhieuNhap";
 			Text = "frmPhieuNhap";
+			Load += frmPhieuNhap_Load;
 			((System.ComponentModel.ISupportInitialize)dgvPhieuNhap).EndInit();
 			groupBox2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)dgvChiTiet).EndInit();
@@ -247,11 +291,6 @@
 		private DataGridView dgvPhieuNhap;
 		private GroupBox groupBox2;
 		private DataGridView dgvChiTiet;
-		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-		private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
 		private GroupBox groupBox3;
 		private Panel panel1;
 		private Button btnThoat;
@@ -264,5 +303,13 @@
 		private DataGridViewTextBoxColumn colTongSoLuongNhap;
 		private DataGridViewTextBoxColumn colThanhTienNhap;
 		private DataGridViewTextBoxColumn colMaNVNhap;
+		private DataGridViewTextBoxColumn colChiTietMaPhieuNhap;
+		private DataGridViewTextBoxColumn colChiTietTenNCC;
+		private DataGridViewTextBoxColumn colChiTietMaPhuTung;
+		private DataGridViewTextBoxColumn colChiTietTenPhuTung;
+		private DataGridViewTextBoxColumn colChiTietSoLuongNhap;
+		private DataGridViewTextBoxColumn colChiTietDonGiaNhap;
+		private DataGridViewTextBoxColumn colChiTietThanhTien;
+		private DataGridViewTextBoxColumn colChiTietHanSuDung;
 	}
 }

@@ -11,6 +11,12 @@ namespace btl
 		{
 			InitializeComponent();
 		}
+		public frmNhapPhieuNhap(string maPhieuNhap)
+		{
+			InitializeComponent();
+			txtMaPhieuNhap.Text = maPhieuNhap;
+			txtMaPhieuNhap.Enabled = false;
+		}
 
 		private void frmKho_Load(object sender, EventArgs e)
 		{
