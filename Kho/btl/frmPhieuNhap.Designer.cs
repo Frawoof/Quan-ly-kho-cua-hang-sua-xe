@@ -47,7 +47,6 @@
 			groupBox3 = new GroupBox();
 			panel1 = new Panel();
 			btnThoat = new Button();
-			btnHuyPhieuNhap = new Button();
 			btnXoaPhieuNhap = new Button();
 			btnSuaPhieuNhap = new Button();
 			btnThemPhieuNhap = new Button();
@@ -210,7 +209,6 @@
 			// panel1
 			// 
 			panel1.Controls.Add(btnThoat);
-			panel1.Controls.Add(btnHuyPhieuNhap);
 			panel1.Controls.Add(btnXoaPhieuNhap);
 			panel1.Controls.Add(btnSuaPhieuNhap);
 			panel1.Controls.Add(btnThemPhieuNhap);
@@ -221,21 +219,12 @@
 			// 
 			// btnThoat
 			// 
-			btnThoat.Location = new Point(690, 34);
+			btnThoat.Location = new Point(526, 34);
 			btnThoat.Name = "btnThoat";
 			btnThoat.Size = new Size(139, 53);
 			btnThoat.TabIndex = 9;
 			btnThoat.Text = "Thoát";
 			btnThoat.UseVisualStyleBackColor = true;
-			// 
-			// btnHuyPhieuNhap
-			// 
-			btnHuyPhieuNhap.Location = new Point(522, 34);
-			btnHuyPhieuNhap.Name = "btnHuyPhieuNhap";
-			btnHuyPhieuNhap.Size = new Size(139, 53);
-			btnHuyPhieuNhap.TabIndex = 8;
-			btnHuyPhieuNhap.Text = "Hủy";
-			btnHuyPhieuNhap.UseVisualStyleBackColor = true;
 			// 
 			// btnXoaPhieuNhap
 			// 
@@ -295,7 +284,6 @@
 		private GroupBox groupBox3;
 		private Panel panel1;
 		private Button btnThoat;
-		private Button btnHuyPhieuNhap;
 		private Button btnXoaPhieuNhap;
 		private Button btnSuaPhieuNhap;
 		private Button btnThemPhieuNhap;

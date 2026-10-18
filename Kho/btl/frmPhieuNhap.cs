@@ -33,7 +33,7 @@ namespace btl
 			string sqlChiTiet = "Select pn.MaPhieuNhap, ncc.TenNCC, pt.MaPhuTung, pt.TenPhuTung, ct.SoLuong As SoLuongNhap, ct.DonGiaNhap, ct.ThanhTien, ct.HanSuDung " +
 				"From PhuTung pt Join ChiTietPhieuNhap ct On pt.MaPhuTung = ct.MaPhuTung " +
 				"Join PhieuNhap pn On ct.MaPhieuNhap = pn.MaPhieuNhap " +
-				"Join NhaCungCap ncc On pn.MaNCC = ncc.MaNCC " +
+				"Join NhaCungCap ncc On ct.MaNCC = ncc.MaNCC " +
 				"Where ct.MaPhieuNhap = '" + maPhieuNhap + "'";
 
 			dgvChiTiet.DataSource = dtbase.ReadData(sqlChiTiet);

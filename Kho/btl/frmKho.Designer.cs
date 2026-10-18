@@ -72,14 +72,14 @@
 			groupBox1.Controls.Add(dgvPhuTung);
 			groupBox1.Location = new Point(3, 3);
 			groupBox1.Name = "groupBox1";
-			groupBox1.Size = new Size(955, 361);
+			groupBox1.Size = new Size(955, 549);
 			groupBox1.TabIndex = 0;
 			groupBox1.TabStop = false;
 			groupBox1.Text = "Danh sách phụ tùng";
 			// 
 			// btnNgungSuDung
 			// 
-			btnNgungSuDung.Location = new Point(650, 296);
+			btnNgungSuDung.Location = new Point(650, 494);
 			btnNgungSuDung.Name = "btnNgungSuDung";
 			btnNgungSuDung.RightToLeft = RightToLeft.No;
 			btnNgungSuDung.Size = new Size(127, 49);
@@ -90,7 +90,7 @@
 			// 
 			// btnThoat
 			// 
-			btnThoat.Location = new Point(806, 296);
+			btnThoat.Location = new Point(806, 494);
 			btnThoat.Name = "btnThoat";
 			btnThoat.RightToLeft = RightToLeft.No;
 			btnThoat.Size = new Size(127, 49);
@@ -100,7 +100,7 @@
 			// 
 			// btnDanhSachPhieuNhap
 			// 
-			btnDanhSachPhieuNhap.Location = new Point(16, 296);
+			btnDanhSachPhieuNhap.Location = new Point(16, 494);
 			btnDanhSachPhieuNhap.Name = "btnDanhSachPhieuNhap";
 			btnDanhSachPhieuNhap.Size = new Size(201, 49);
 			btnDanhSachPhieuNhap.TabIndex = 14;
@@ -117,7 +117,7 @@
 			dgvPhuTung.Location = new Point(6, 26);
 			dgvPhuTung.Name = "dgvPhuTung";
 			dgvPhuTung.RowHeadersWidth = 51;
-			dgvPhuTung.Size = new Size(943, 250);
+			dgvPhuTung.Size = new Size(943, 462);
 			dgvPhuTung.TabIndex = 0;
 			// 
 			// colMaPhuTung
@@ -165,14 +165,14 @@
 			panel2.Controls.Add(groupBox1);
 			panel2.Location = new Point(12, 76);
 			panel2.Name = "panel2";
-			panel2.Size = new Size(958, 367);
+			panel2.Size = new Size(958, 555);
 			panel2.TabIndex = 1;
 			// 
 			// frmKho
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(982, 457);
+			ClientSize = new Size(982, 643);
 			Controls.Add(panel2);
 			Controls.Add(panel1);
 			FormBorderStyle = FormBorderStyle.FixedSingle;

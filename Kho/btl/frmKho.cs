@@ -23,7 +23,7 @@ namespace btl
 			string sqlPhuTung = "Select pt.MaPhuTung, pt.TenPhuTung, pt.SoLuongTon, ncc.TenNCC, ct.HanSuDung " +
 				"From PhuTung pt Join ChiTietPhieuNhap ct On pt.MaPhuTung = ct.MaPhuTung " +
 				"Join PhieuNhap pn On ct.MaPhieuNhap = pn.MaPhieuNhap " +
-				"Join NhaCungCap ncc On pn.MaNCC = ncc.MaNCC " +
+				"Join NhaCungCap ncc On ct.MaNCC = ncc.MaNCC " +
 				"Where pt.TrangThai = 1" +
 				"Order By pt.MaPhuTung Asc";
 

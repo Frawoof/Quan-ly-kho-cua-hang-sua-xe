@@ -28,7 +28,7 @@ namespace btl
 				string sqlDgvPhuTung = "Select pn.MaPhieuNhap, ncc.TenNCC, pn.NgayNhap, pt.MaPhuTung, pt.TenPhuTung, ct.SoLuong As SoLuongNhap, ct.DonGiaNhap, ct.ThanhTien, ct.HanSuDung, pn.NguoiNhap " +
 					"From PhuTung pt Join ChiTietPhieuNhap ct On pt.MaPhuTung = ct.MaPhuTung " +
 					"Join PhieuNhap pn On pn.MaPhieuNhap = ct.MaPhieuNhap " +
-					"Join NhaCungCap ncc On pn.MaNCC = ncc.MaNCC " +
+					"Join NhaCungCap ncc On ct.MaNCC = ncc.MaNCC " +
 					"Where pn.MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'";
 
 				dgvPhuTung.DataSource = dtbase.ReadData(sqlDgvPhuTung);
@@ -303,7 +303,7 @@ namespace btl
 			DataTable dataLuu = dtbase.ReadData("Select * From PhieuNhap Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'");
 			if(dataLuu.Rows.Count > 0)
 			{
-				string teNCC =
+				string teNCC = "ronaldo";
 			}
 			else
 			{
@@ -311,22 +311,23 @@ namespace btl
 				{
 					string maPhieuNhap = rows[0].Cells["colMaPhieu"].Value.ToString();
 
-					string tenNCC = rows[0].Cells["colTenNCC"].Value.ToString();
-					DataTable data = dtbase.ReadData("Select MaNCC From NhaCungCap Where TenNCC = N'" + tenNCC + "'");
-					string maNCC = data.Rows[0]["MaNCC"].ToString();
-
 					DateTime ngayNhap = Convert.ToDateTime(rows[0].Cells["colNgayNhap"].Value);
 					string maNV = rows[0].Cells["colMaNVNhap"].Value.ToString();
 
-					string sqlPhieu = "Insert Into PhieuNhap (MaPhieuNhap, MaNCC, NgayNhap, NguoiNhap) " +
-						"Values('" + maPhieuNhap + "', '" + maNCC + "', '" + ngayNhap + "', '" + maNV + "')";
+					string sqlPhieu = "Insert Into PhieuNhap (MaPhieuNhap, NgayNhap, NguoiNhap) " +
+						"Values('" + maPhieuNhap + "', '" + ngayNhap + "', '" + maNV + "')";
 
 					dtbase.ChangeData(sqlPhieu);
 
 					foreach (DataGridViewRow row in rows)
 					{
-						string sqlChiTietPhieuNhap = "Insert Into ChiTietPhieuNhap (MaPhieuNhap, MaPhuTung, SoLuong, DonGiaNhap, hanSuDung) Values" +
+						string tenNCC = row.Cells["colTenNCC"].Value.ToString();
+						DataTable data = dtbase.ReadData("Select MaNCC From NhaCungCap Where TenNCC = N'" + tenNCC + "'");
+						string maNCC = data.Rows[0]["MaNCC"].ToString();
+
+						string sqlChiTietPhieuNhap = "Insert Into ChiTietPhieuNhap (MaPhieuNhap, MaNCC, MaPhuTung, SoLuong, DonGiaNhap, hanSuDung) Values" +
 							"('" + row.Cells["colMaPhieu"].Value.ToString() + "', " +
+							"'" + maNCC + "', " +
 							"'" + row.Cells["colMaPhuTung"].Value.ToString() + "', " +
 							"'" + Convert.ToInt32(row.Cells["colSoLuongNhap"].Value.ToString()) + "', " +
 							"'" + Convert.ToDecimal(row.Cells["colDonGiaNhap"].Value.ToString()) + "', " +
