@@ -299,17 +299,24 @@ namespace btl
 				MessageBox.Show("Thêm thông tin phiếu nhập trước!", "Thông báo");
 				return;
 			}
-
-			DataTable dataLuu = dtbase.ReadData("Select * From PhieuNhap Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'");
-			if(dataLuu.Rows.Count > 0)
+			try
 			{
-				string teNCC = "ronaldo";
-			}
-			else
-			{
-				try
+				DataTable dataLuu = dtbase.ReadData("Select * From PhieuNhap Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'");
+				if (dataLuu.Rows.Count > 0)
 				{
-					string maPhieuNhap = rows[0].Cells["colMaPhieu"].Value.ToString();
+					DateTime updateNgayNhap = Convert.ToDateTime(rows[0].Cells["colNgayNhap"].Value);
+					string sqlUpdateNgayNhap = "Update PhieuNhap Set NgayNhap = " + updateNgayNhap + "Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'";
+					dtbase.ChangeData(sqlUpdateNgayNhap);
+
+					string updateMaNV = rows[0].Cells["colMaNVNhap"].Value.ToString();
+					string sqlUpdateMaNV = "Update PhieuNhap Set nguoiNhap = '" + updateMaNV + "' Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'";
+					dtbase.ChangeData(sqlUpdateMaNV);
+
+					dtbase.ChangeData("Delete From ChiTietPhieuNhap Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'");
+				}
+				else
+				{
+					string maPhieuNhap = txtMaPhieuNhap.Text;
 
 					DateTime ngayNhap = Convert.ToDateTime(rows[0].Cells["colNgayNhap"].Value);
 					string maNV = rows[0].Cells["colMaNVNhap"].Value.ToString();
@@ -318,33 +325,33 @@ namespace btl
 						"Values('" + maPhieuNhap + "', '" + ngayNhap + "', '" + maNV + "')";
 
 					dtbase.ChangeData(sqlPhieu);
-
-					foreach (DataGridViewRow row in rows)
-					{
-						string tenNCC = row.Cells["colTenNCC"].Value.ToString();
-						DataTable data = dtbase.ReadData("Select MaNCC From NhaCungCap Where TenNCC = N'" + tenNCC + "'");
-						string maNCC = data.Rows[0]["MaNCC"].ToString();
-
-						string sqlChiTietPhieuNhap = "Insert Into ChiTietPhieuNhap (MaPhieuNhap, MaNCC, MaPhuTung, SoLuong, DonGiaNhap, hanSuDung) Values" +
-							"('" + row.Cells["colMaPhieu"].Value.ToString() + "', " +
-							"'" + maNCC + "', " +
-							"'" + row.Cells["colMaPhuTung"].Value.ToString() + "', " +
-							"'" + Convert.ToInt32(row.Cells["colSoLuongNhap"].Value.ToString()) + "', " +
-							"'" + Convert.ToDecimal(row.Cells["colDonGiaNhap"].Value.ToString()) + "', " +
-							"'" + Convert.ToDateTime(row.Cells["colHanSuDung"].Value) + "')";
-
-						dtbase.ChangeData(sqlChiTietPhieuNhap);
-					}
-
-					MessageBox.Show("Lưu phiếu nhập thành công!", "Thông báo");
-
-					ResetForm();
-					txtMaPhieuNhap.Clear();
 				}
-				catch (Exception ex)
+
+				foreach (DataGridViewRow row in rows)
 				{
-					MessageBox.Show("Lỗi khi lưu phiếu nhập: " + ex.Message, "Thông báo");
+					string tenNCC = row.Cells["colTenNCC"].Value.ToString();
+					DataTable data = dtbase.ReadData("Select MaNCC From NhaCungCap Where TenNCC = N'" + tenNCC + "'");
+					string maNCC = data.Rows[0]["MaNCC"].ToString();
+
+					string sqlChiTietPhieuNhap = "Insert Into ChiTietPhieuNhap (MaPhieuNhap, MaNCC, MaPhuTung, SoLuong, DonGiaNhap, hanSuDung) Values" +
+						"('" + row.Cells["colMaPhieu"].Value.ToString() + "', " +
+						"'" + maNCC + "', " +
+						"'" + row.Cells["colMaPhuTung"].Value.ToString() + "', " +
+						"'" + Convert.ToInt32(row.Cells["colSoLuongNhap"].Value.ToString()) + "', " +
+						"'" + Convert.ToDecimal(row.Cells["colDonGiaNhap"].Value.ToString()) + "', " +
+						"'" + Convert.ToDateTime(row.Cells["colHanSuDung"].Value) + "')";
+
+					dtbase.ChangeData(sqlChiTietPhieuNhap);
 				}
+
+				MessageBox.Show("Lưu phiếu nhập thành công!", "Thông báo");
+
+				ResetForm();
+				txtMaPhieuNhap.Clear();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Lỗi khi lưu phiếu nhập: " + ex.Message, "Thông báo");
 			}
 		}
 

@@ -63,5 +63,13 @@ namespace btl
 				frmKho_Load(sender, e);
 			}
 		}
+
+		private void btnThoat_Click_1(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("Chắc chắn muốn thoát?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				this.Close();
+			}
+		}
 	}
 }

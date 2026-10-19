@@ -97,6 +97,7 @@
 			btnThoat.TabIndex = 15;
 			btnThoat.Text = "Thoát";
 			btnThoat.UseVisualStyleBackColor = true;
+			btnThoat.Click += btnThoat_Click_1;
 			// 
 			// btnDanhSachPhieuNhap
 			// 

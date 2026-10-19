@@ -64,15 +64,59 @@ namespace btl
 
 		private void btnSuaPhieuNhap_Click(object sender, EventArgs e)
 		{
-			if(dgvPhieuNhap.Rows.Count == 0 || dgvPhieuNhap.CurrentRow.IsNewRow == true)
+			if (dgvChiTiet.Rows.Count == 0 || dgvPhieuNhap.CurrentRow.IsNewRow == true)
 			{
-				MessageBox.Show("Chọn phiếu cần sửa!", "Thống báo");
+				MessageBox.Show("Chọn phiếu cần sửa!", "Thông báo");
 				return;
 			}
 
 			string maPhieuNhap = dgvPhieuNhap.CurrentRow.Cells["colMaPhieuNhap"].Value.ToString();
 			frmNhapPhieuNhap formNhapPhieuNhap = new frmNhapPhieuNhap(maPhieuNhap);
 			formNhapPhieuNhap.ShowDialog();
+		}
+
+		private void btnXoaPhieuNhap_Click(object sender, EventArgs e)
+		{
+			if (dgvChiTiet.Rows.Count == 0 || dgvPhieuNhap.CurrentRow.IsNewRow == true)
+			{
+				MessageBox.Show("Chọn phiếu cần xóa!", "Thông báo");
+				return;
+			}
+
+			if (MessageBox.Show("Chắc chắn muốn xóa phiếu nhập?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				try
+				{
+					string maPhieuNhap = dgvPhieuNhap.CurrentRow.Cells["colMaPhieuNhap"].Value.ToString();
+
+					string sqlDeleteChiTiet = "Delete ChiTietPhieuNhap Where MaPhieuNhap = '" + maPhieuNhap + "'";
+					dtbase.ChangeData(sqlDeleteChiTiet);
+
+					string sqlDeletePhieuNhap = "Delete PhieuNhap Where MaPhieuNhap = '" + maPhieuNhap + "'";
+					dtbase.ChangeData(sqlDeletePhieuNhap);
+
+					frmPhieuNhap_Load(sender, e);
+
+					MessageBox.Show("Xóa thành công!", "Thông báo");
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Lỗi khi xóa phiếu: " + ex.Message, "Thông báo");
+				}
+			}
+		}
+
+		private void btnThoat_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("Chắc chắn muốn thoát?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			{
+				this.Close();
+			}
+		}
+
+		private void btnInPhieuNhap_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
