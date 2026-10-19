@@ -46,12 +46,11 @@
 			colChiTietHanSuDung = new DataGridViewTextBoxColumn();
 			groupBox3 = new GroupBox();
 			panel1 = new Panel();
+			btnInPhieuNhap = new Button();
 			btnThoat = new Button();
 			btnXoaPhieuNhap = new Button();
 			btnSuaPhieuNhap = new Button();
 			btnThemPhieuNhap = new Button();
-			button1 = new Button();
-			btnInPhieuNhap = new Button();
 			((System.ComponentModel.ISupportInitialize)dgvPhieuNhap).BeginInit();
 			groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)dgvChiTiet).BeginInit();
@@ -211,7 +210,6 @@
 			// panel1
 			// 
 			panel1.Controls.Add(btnInPhieuNhap);
-			panel1.Controls.Add(button1);
 			panel1.Controls.Add(btnThoat);
 			panel1.Controls.Add(btnXoaPhieuNhap);
 			panel1.Controls.Add(btnSuaPhieuNhap);
@@ -220,6 +218,16 @@
 			panel1.Name = "panel1";
 			panel1.Size = new Size(858, 121);
 			panel1.TabIndex = 4;
+			// 
+			// btnInPhieuNhap
+			// 
+			btnInPhieuNhap.Location = new Point(525, 34);
+			btnInPhieuNhap.Name = "btnInPhieuNhap";
+			btnInPhieuNhap.Size = new Size(139, 53);
+			btnInPhieuNhap.TabIndex = 11;
+			btnInPhieuNhap.Text = "In phiếu nhập";
+			btnInPhieuNhap.UseVisualStyleBackColor = true;
+			btnInPhieuNhap.Click += btnInPhieuNhap_Click;
 			// 
 			// btnThoat
 			// 
@@ -260,25 +268,6 @@
 			btnThemPhieuNhap.Text = "Thêm phiếu nhập";
 			btnThemPhieuNhap.UseVisualStyleBackColor = true;
 			btnThemPhieuNhap.Click += btnThemPhieuNhap_Click;
-			// 
-			// button1
-			// 
-			button1.Location = new Point(360, 34);
-			button1.Name = "button1";
-			button1.Size = new Size(139, 53);
-			button1.TabIndex = 10;
-			button1.Text = "Xóa phiếu nhập";
-			button1.UseVisualStyleBackColor = true;
-			// 
-			// btnInPhieuNhap
-			// 
-			btnInPhieuNhap.Location = new Point(525, 34);
-			btnInPhieuNhap.Name = "btnInPhieuNhap";
-			btnInPhieuNhap.Size = new Size(139, 53);
-			btnInPhieuNhap.TabIndex = 11;
-			btnInPhieuNhap.Text = "In phiếu nhập";
-			btnInPhieuNhap.UseVisualStyleBackColor = true;
-			btnInPhieuNhap.Click += btnInPhieuNhap_Click;
 			// 
 			// frmPhieuNhap
 			// 
@@ -326,6 +315,5 @@
 		private DataGridViewTextBoxColumn colChiTietThanhTien;
 		private DataGridViewTextBoxColumn colChiTietHanSuDung;
 		private Button btnInPhieuNhap;
-		private Button button1;
 	}
 }
