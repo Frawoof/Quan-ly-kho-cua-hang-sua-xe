@@ -41,6 +41,10 @@
 			label1 = new Label();
 			panel1 = new Panel();
 			groupBox2 = new GroupBox();
+			txtGhiChu = new RichTextBox();
+			label12 = new Label();
+			txtDonGiaBan = new TextBox();
+			label11 = new Label();
 			btnHuyPhuTung = new Button();
 			btnLamMoiPhuTung = new Button();
 			btnXoaPhuTung = new Button();
@@ -62,16 +66,18 @@
 			panel2 = new Panel();
 			btnThoat = new Button();
 			btnLuuPhieu = new Button();
-			colMaPhieu = new DataGridViewTextBoxColumn();
+			colMaPhieuNhap = new DataGridViewTextBoxColumn();
 			colTenNCC = new DataGridViewTextBoxColumn();
 			colNgayNhap = new DataGridViewTextBoxColumn();
 			colMaPhuTung = new DataGridViewTextBoxColumn();
 			colTenPhuTung = new DataGridViewTextBoxColumn();
 			colSoLuongNhap = new DataGridViewTextBoxColumn();
 			colDonGiaNhap = new DataGridViewTextBoxColumn();
+			colDonGiaBan = new DataGridViewTextBoxColumn();
 			colThanhTien = new DataGridViewTextBoxColumn();
 			colHanSuDung = new DataGridViewTextBoxColumn();
-			colMaNVNhap = new DataGridViewTextBoxColumn();
+			colMaNhanVienNhap = new DataGridViewTextBoxColumn();
+			colGhiChu = new DataGridViewTextBoxColumn();
 			groupBox1.SuspendLayout();
 			panel1.SuspendLayout();
 			groupBox2.SuspendLayout();
@@ -197,6 +203,10 @@
 			// 
 			// groupBox2
 			// 
+			groupBox2.Controls.Add(txtGhiChu);
+			groupBox2.Controls.Add(label12);
+			groupBox2.Controls.Add(txtDonGiaBan);
+			groupBox2.Controls.Add(label11);
 			groupBox2.Controls.Add(btnHuyPhuTung);
 			groupBox2.Controls.Add(btnLamMoiPhuTung);
 			groupBox2.Controls.Add(btnXoaPhuTung);
@@ -221,6 +231,39 @@
 			groupBox2.TabIndex = 2;
 			groupBox2.TabStop = false;
 			groupBox2.Text = "Thông tin phụ tùng";
+			// 
+			// txtGhiChu
+			// 
+			txtGhiChu.Location = new Point(1020, 165);
+			txtGhiChu.Name = "txtGhiChu";
+			txtGhiChu.Size = new Size(250, 77);
+			txtGhiChu.TabIndex = 24;
+			txtGhiChu.Text = "";
+			// 
+			// label12
+			// 
+			label12.AutoSize = true;
+			label12.Location = new Point(941, 165);
+			label12.Name = "label12";
+			label12.Size = new Size(61, 20);
+			label12.TabIndex = 23;
+			label12.Text = "Ghi chú:";
+			// 
+			// txtDonGiaBan
+			// 
+			txtDonGiaBan.Location = new Point(703, 111);
+			txtDonGiaBan.Name = "txtDonGiaBan";
+			txtDonGiaBan.Size = new Size(172, 27);
+			txtDonGiaBan.TabIndex = 22;
+			// 
+			// label11
+			// 
+			label11.AutoSize = true;
+			label11.Location = new Point(595, 114);
+			label11.Name = "label11";
+			label11.Size = new Size(94, 20);
+			label11.TabIndex = 21;
+			label11.Text = "Đơn giá bán:";
 			// 
 			// btnHuyPhuTung
 			// 
@@ -306,16 +349,16 @@
 			// 
 			// txtDonGiaNhap
 			// 
-			txtDonGiaNhap.Location = new Point(580, 110);
+			txtDonGiaNhap.Location = new Point(401, 111);
 			txtDonGiaNhap.Name = "txtDonGiaNhap";
-			txtDonGiaNhap.Size = new Size(250, 27);
+			txtDonGiaNhap.Size = new Size(172, 27);
 			txtDonGiaNhap.TabIndex = 13;
 			txtDonGiaNhap.TextChanged += txtDonGiaNhap_TextChanged;
 			// 
 			// label8
 			// 
 			label8.AutoSize = true;
-			label8.Location = new Point(454, 110);
+			label8.Location = new Point(293, 114);
 			label8.Name = "label8";
 			label8.Size = new Size(102, 20);
 			label8.TabIndex = 12;
@@ -325,7 +368,7 @@
 			// 
 			txtSoLuongNhap.Location = new Point(149, 107);
 			txtSoLuongNhap.Name = "txtSoLuongNhap";
-			txtSoLuongNhap.Size = new Size(246, 27);
+			txtSoLuongNhap.Size = new Size(69, 27);
 			txtSoLuongNhap.TabIndex = 11;
 			txtSoLuongNhap.TextChanged += txtSoLuongNhap_TextChanged;
 			// 
@@ -374,7 +417,7 @@
 			// dgvPhuTung
 			// 
 			dgvPhuTung.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dgvPhuTung.Columns.AddRange(new DataGridViewColumn[] { colMaPhieu, colTenNCC, colNgayNhap, colMaPhuTung, colTenPhuTung, colSoLuongNhap, colDonGiaNhap, colThanhTien, colHanSuDung, colMaNVNhap });
+			dgvPhuTung.Columns.AddRange(new DataGridViewColumn[] { colMaPhieuNhap, colTenNCC, colNgayNhap, colMaPhuTung, colTenPhuTung, colSoLuongNhap, colDonGiaNhap, colDonGiaBan, colThanhTien, colHanSuDung, colMaNhanVienNhap, colGhiChu });
 			dgvPhuTung.Location = new Point(3, 254);
 			dgvPhuTung.Name = "dgvPhuTung";
 			dgvPhuTung.RowHeadersWidth = 51;
@@ -412,13 +455,13 @@
 			btnLuuPhieu.UseVisualStyleBackColor = true;
 			btnLuuPhieu.Click += btnLuuPhieu_Click;
 			// 
-			// colMaPhieu
+			// colMaPhieuNhap
 			// 
-			colMaPhieu.DataPropertyName = "MaPhieuNhap";
-			colMaPhieu.HeaderText = "Mã phiếu nhập";
-			colMaPhieu.MinimumWidth = 6;
-			colMaPhieu.Name = "colMaPhieu";
-			colMaPhieu.Width = 125;
+			colMaPhieuNhap.DataPropertyName = "MaPhieuNhap";
+			colMaPhieuNhap.HeaderText = "Mã phiếu nhập";
+			colMaPhieuNhap.MinimumWidth = 6;
+			colMaPhieuNhap.Name = "colMaPhieuNhap";
+			colMaPhieuNhap.Width = 125;
 			// 
 			// colTenNCC
 			// 
@@ -468,6 +511,14 @@
 			colDonGiaNhap.Name = "colDonGiaNhap";
 			colDonGiaNhap.Width = 125;
 			// 
+			// colDonGiaBan
+			// 
+			colDonGiaBan.DataPropertyName = "DonGiaBan";
+			colDonGiaBan.HeaderText = "Đơn giá bán";
+			colDonGiaBan.MinimumWidth = 6;
+			colDonGiaBan.Name = "colDonGiaBan";
+			colDonGiaBan.Width = 125;
+			// 
 			// colThanhTien
 			// 
 			colThanhTien.DataPropertyName = "ThanhTien";
@@ -484,13 +535,21 @@
 			colHanSuDung.Name = "colHanSuDung";
 			colHanSuDung.Width = 125;
 			// 
-			// colMaNVNhap
+			// colMaNhanVienNhap
 			// 
-			colMaNVNhap.DataPropertyName = "NguoiNhap";
-			colMaNVNhap.HeaderText = "Mã NV nhập";
-			colMaNVNhap.MinimumWidth = 6;
-			colMaNVNhap.Name = "colMaNVNhap";
-			colMaNVNhap.Width = 125;
+			colMaNhanVienNhap.DataPropertyName = "MaNhanVienNhap";
+			colMaNhanVienNhap.HeaderText = "Mã nhân viên nhập";
+			colMaNhanVienNhap.MinimumWidth = 6;
+			colMaNhanVienNhap.Name = "colMaNhanVienNhap";
+			colMaNhanVienNhap.Width = 125;
+			// 
+			// colGhiChu
+			// 
+			colGhiChu.DataPropertyName = "GhiChu";
+			colGhiChu.HeaderText = "Ghi chú";
+			colGhiChu.MinimumWidth = 6;
+			colGhiChu.Name = "colGhiChu";
+			colGhiChu.Width = 125;
 			// 
 			// frmNhapPhieuNhap
 			// 
@@ -551,15 +610,21 @@
 		private Label label5;
 		private Button btnLamMoiPhuTung;
 		private Button btnHuyPhuTung;
-		private DataGridViewTextBoxColumn colMaPhieu;
+		private TextBox txtDonGiaBan;
+		private Label label11;
+		private RichTextBox txtGhiChu;
+		private Label label12;
+		private DataGridViewTextBoxColumn colMaPhieuNhap;
 		private DataGridViewTextBoxColumn colTenNCC;
 		private DataGridViewTextBoxColumn colNgayNhap;
 		private DataGridViewTextBoxColumn colMaPhuTung;
 		private DataGridViewTextBoxColumn colTenPhuTung;
 		private DataGridViewTextBoxColumn colSoLuongNhap;
 		private DataGridViewTextBoxColumn colDonGiaNhap;
+		private DataGridViewTextBoxColumn colDonGiaBan;
 		private DataGridViewTextBoxColumn colThanhTien;
 		private DataGridViewTextBoxColumn colHanSuDung;
-		private DataGridViewTextBoxColumn colMaNVNhap;
+		private DataGridViewTextBoxColumn colMaNhanVienNhap;
+		private DataGridViewTextBoxColumn colGhiChu;
 	}
 }

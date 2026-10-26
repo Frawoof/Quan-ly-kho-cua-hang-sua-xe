@@ -20,15 +20,13 @@ namespace btl
 
 		private void frmKho_Load(object sender, EventArgs e)
 		{
-			string sqlPhuTung = "Select pt.MaPhuTung, pt.TenPhuTung, pt.SoLuongTon, ncc.TenNCC, ct.HanSuDung " +
-				"From PhuTung pt Join ChiTietPhieuNhap ct On pt.MaPhuTung = ct.MaPhuTung " +
-				"Join PhieuNhap pn On ct.MaPhieuNhap = pn.MaPhieuNhap " +
-				"Join NhaCungCap ncc On ct.MaNCC = ncc.MaNCC " +
-				"Where pt.TrangThai = 1" +
+			string sqlDgvPhuTung = "Select pt.MaPhuTung, pt.TenPhuTung, ncc.TenNCC, pt.SoLuongTon, pt.DonGiaBan, pt.DonGiaNhap, pt.HanSuDung " +
+				"From PhuTung pt Join NhaCungCap ncc On pt.MaNCC = ncc.MaNCC " +
+				"Where pt.TrangThai = 1 " +
 				"Order By pt.MaPhuTung Asc";
 
 			dgvPhuTung.AutoGenerateColumns = false;
-			dgvPhuTung.DataSource = dtbase.ReadData(sqlPhuTung);
+			dgvPhuTung.DataSource = dtbase.ReadData(sqlDgvPhuTung);
 			dgvPhuTung.ReadOnly = true;
 		}
 
@@ -59,6 +57,7 @@ namespace btl
 			if (MessageBox.Show("Chắc chắn muốn ngưng sử dụng?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
 				string maPhuTung = dgvPhuTung.CurrentRow.Cells["colMaPhuTung"].Value.ToString();
+
 				string sqlUpdateTrangThai = "Update PhuTung Set TrangThai = 0 Where MaPhuTung = '" + maPhuTung + "'";
 
 				dtbase.ChangeData(sqlUpdateTrangThai);
@@ -77,13 +76,14 @@ namespace btl
 
 		private void txtTim_TextChanged(object sender, EventArgs e)
 		{
-			string sqlTim = "Select pt.MaPhuTung, pt.TenPhuTung, pt.SoLuongTon, ncc.TenNCC, ct.HanSuDung " +
-				"From PhuTung pt Join ChiTietPhieuNhap ct On pt.MaPhuTung = ct.MaPhuTung " +
-				"Join PhieuNhap pn On ct.MaPhieuNhap = pn.MaPhieuNhap " +
-				"Join NhaCungCap ncc On ct.MaNCC = ncc.MaNCC " +
-				"Where pt.TrangThai = 1 And pt.MaPhuTung Like '%" + txtTim.Text + "%' Or pt.TenPhuTung Like N'%" + txtTim.Text + "%'" +
+			string timPhuTung = txtTimPhuTung.Text;
+
+			string sqlTimPhuTung = "Select pt.MaPhuTung, pt.TenPhuTung, ncc.TenNCC, pt.SoLuongTon, pt.DonGiaBan, pt.DonGiaNhap, pt.HanSuDung " +
+				"From PhuTung pt Join NhaCungCap ncc On pt.MaNCC = ncc.MaNCC " +
+				"Where pt.TrangThai = 1 And (pt.MaPhuTung Like '%" + timPhuTung + "%' Or pt.TenPhuTung Like N'%" + timPhuTung + "%')" +
 				"Order By pt.MaPhuTung Asc";
-			dgvPhuTung.DataSource = dtbase.ReadData(sqlTim);
+
+			dgvPhuTung.DataSource = dtbase.ReadData(sqlTimPhuTung);
 		}
 	}
 }

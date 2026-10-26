@@ -29,19 +29,21 @@
 		private void InitializeComponent()
 		{
 			panel1 = new Panel();
+			txtTimPhuTung = new TextBox();
+			label1 = new Label();
 			groupBox1 = new GroupBox();
 			btnNgungSuDung = new Button();
 			btnThoat = new Button();
 			btnDanhSachPhieuNhap = new Button();
 			dgvPhuTung = new DataGridView();
+			panel2 = new Panel();
 			colMaPhuTung = new DataGridViewTextBoxColumn();
 			colTenPhuTung = new DataGridViewTextBoxColumn();
-			colSoLuongTon = new DataGridViewTextBoxColumn();
 			colTenNCC = new DataGridViewTextBoxColumn();
+			colSoLuongTon = new DataGridViewTextBoxColumn();
+			colDonGiaBan = new DataGridViewTextBoxColumn();
+			colDonGiaNhap = new DataGridViewTextBoxColumn();
 			colHanSuDung = new DataGridViewTextBoxColumn();
-			panel2 = new Panel();
-			label1 = new Label();
-			txtTim = new TextBox();
 			panel1.SuspendLayout();
 			groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)dgvPhuTung).BeginInit();
@@ -50,12 +52,29 @@
 			// 
 			// panel1
 			// 
-			panel1.Controls.Add(txtTim);
+			panel1.Controls.Add(txtTimPhuTung);
 			panel1.Controls.Add(label1);
 			panel1.Location = new Point(12, 12);
 			panel1.Name = "panel1";
 			panel1.Size = new Size(958, 58);
 			panel1.TabIndex = 0;
+			// 
+			// txtTimPhuTung
+			// 
+			txtTimPhuTung.Location = new Point(107, 17);
+			txtTimPhuTung.Name = "txtTimPhuTung";
+			txtTimPhuTung.Size = new Size(278, 27);
+			txtTimPhuTung.TabIndex = 1;
+			txtTimPhuTung.TextChanged += txtTim_TextChanged;
+			// 
+			// label1
+			// 
+			label1.AutoSize = true;
+			label1.Location = new Point(55, 20);
+			label1.Name = "label1";
+			label1.Size = new Size(37, 20);
+			label1.TabIndex = 0;
+			label1.Text = "Tìm:";
 			// 
 			// groupBox1
 			// 
@@ -107,12 +126,20 @@
 			dgvPhuTung.AllowUserToAddRows = false;
 			dgvPhuTung.AllowUserToDeleteRows = false;
 			dgvPhuTung.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dgvPhuTung.Columns.AddRange(new DataGridViewColumn[] { colMaPhuTung, colTenPhuTung, colSoLuongTon, colTenNCC, colHanSuDung });
+			dgvPhuTung.Columns.AddRange(new DataGridViewColumn[] { colMaPhuTung, colTenPhuTung, colTenNCC, colSoLuongTon, colDonGiaBan, colDonGiaNhap, colHanSuDung });
 			dgvPhuTung.Location = new Point(6, 26);
 			dgvPhuTung.Name = "dgvPhuTung";
 			dgvPhuTung.RowHeadersWidth = 51;
 			dgvPhuTung.Size = new Size(943, 462);
 			dgvPhuTung.TabIndex = 0;
+			// 
+			// panel2
+			// 
+			panel2.Controls.Add(groupBox1);
+			panel2.Location = new Point(12, 76);
+			panel2.Name = "panel2";
+			panel2.Size = new Size(958, 555);
+			panel2.TabIndex = 1;
 			// 
 			// colMaPhuTung
 			// 
@@ -130,14 +157,6 @@
 			colTenPhuTung.Name = "colTenPhuTung";
 			colTenPhuTung.Width = 250;
 			// 
-			// colSoLuongTon
-			// 
-			colSoLuongTon.DataPropertyName = "SoLuongTon";
-			colSoLuongTon.HeaderText = "Số lượng tồn";
-			colSoLuongTon.MinimumWidth = 6;
-			colSoLuongTon.Name = "colSoLuongTon";
-			colSoLuongTon.Width = 125;
-			// 
 			// colTenNCC
 			// 
 			colTenNCC.DataPropertyName = "TenNCC";
@@ -146,6 +165,30 @@
 			colTenNCC.Name = "colTenNCC";
 			colTenNCC.Width = 250;
 			// 
+			// colSoLuongTon
+			// 
+			colSoLuongTon.DataPropertyName = "SoLuongTon";
+			colSoLuongTon.HeaderText = "Số lượng tồn";
+			colSoLuongTon.MinimumWidth = 6;
+			colSoLuongTon.Name = "colSoLuongTon";
+			colSoLuongTon.Width = 125;
+			// 
+			// colDonGiaBan
+			// 
+			colDonGiaBan.DataPropertyName = "DonGiaBan";
+			colDonGiaBan.HeaderText = "Đơn giá bán";
+			colDonGiaBan.MinimumWidth = 6;
+			colDonGiaBan.Name = "colDonGiaBan";
+			colDonGiaBan.Width = 125;
+			// 
+			// colDonGiaNhap
+			// 
+			colDonGiaNhap.DataPropertyName = "DonGiaNhap";
+			colDonGiaNhap.HeaderText = "Đơn giá nhập";
+			colDonGiaNhap.MinimumWidth = 6;
+			colDonGiaNhap.Name = "colDonGiaNhap";
+			colDonGiaNhap.Width = 125;
+			// 
 			// colHanSuDung
 			// 
 			colHanSuDung.DataPropertyName = "HanSuDung";
@@ -153,31 +196,6 @@
 			colHanSuDung.MinimumWidth = 6;
 			colHanSuDung.Name = "colHanSuDung";
 			colHanSuDung.Width = 178;
-			// 
-			// panel2
-			// 
-			panel2.Controls.Add(groupBox1);
-			panel2.Location = new Point(12, 76);
-			panel2.Name = "panel2";
-			panel2.Size = new Size(958, 555);
-			panel2.TabIndex = 1;
-			// 
-			// label1
-			// 
-			label1.AutoSize = true;
-			label1.Location = new Point(55, 20);
-			label1.Name = "label1";
-			label1.Size = new Size(37, 20);
-			label1.TabIndex = 0;
-			label1.Text = "Tìm:";
-			// 
-			// txtTim
-			// 
-			txtTim.Location = new Point(107, 17);
-			txtTim.Name = "txtTim";
-			txtTim.Size = new Size(278, 27);
-			txtTim.TabIndex = 1;
-			txtTim.TextChanged += txtTim_TextChanged;
 			// 
 			// frmKho
 			// 
@@ -207,14 +225,16 @@
 		private DataGridView dgvPhuTung;
 		private Panel panel2;
 		private Button btnDanhSachPhieuNhap;
-		private DataGridViewTextBoxColumn colMaPhuTung;
-		private DataGridViewTextBoxColumn colTenPhuTung;
-		private DataGridViewTextBoxColumn colSoLuongTon;
-		private DataGridViewTextBoxColumn colTenNCC;
-		private DataGridViewTextBoxColumn colHanSuDung;
 		private Button btnThoat;
 		private Button btnNgungSuDung;
-		private TextBox txtTim;
+		private TextBox txtTimPhuTung;
 		private Label label1;
+		private DataGridViewTextBoxColumn colMaPhuTung;
+		private DataGridViewTextBoxColumn colTenPhuTung;
+		private DataGridViewTextBoxColumn colTenNCC;
+		private DataGridViewTextBoxColumn colSoLuongTon;
+		private DataGridViewTextBoxColumn colDonGiaBan;
+		private DataGridViewTextBoxColumn colDonGiaNhap;
+		private DataGridViewTextBoxColumn colHanSuDung;
 	}
 }

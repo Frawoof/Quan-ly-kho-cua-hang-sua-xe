@@ -33,17 +33,10 @@
 			colNgayNhap = new DataGridViewTextBoxColumn();
 			colTongSoLuongNhap = new DataGridViewTextBoxColumn();
 			colThanhTienNhap = new DataGridViewTextBoxColumn();
-			colMaNVNhap = new DataGridViewTextBoxColumn();
+			colGhiChu = new DataGridViewTextBoxColumn();
+			colMaNhanVienNhap = new DataGridViewTextBoxColumn();
 			groupBox2 = new GroupBox();
-			dgvChiTiet = new DataGridView();
-			colChiTietMaPhieuNhap = new DataGridViewTextBoxColumn();
-			colChiTietTenNCC = new DataGridViewTextBoxColumn();
-			colChiTietMaPhuTung = new DataGridViewTextBoxColumn();
-			colChiTietTenPhuTung = new DataGridViewTextBoxColumn();
-			colChiTietSoLuongNhap = new DataGridViewTextBoxColumn();
-			colChiTietDonGiaNhap = new DataGridViewTextBoxColumn();
-			colChiTietThanhTien = new DataGridViewTextBoxColumn();
-			colChiTietHanSuDung = new DataGridViewTextBoxColumn();
+			dgvChiTietPhieuNhap = new DataGridView();
 			groupBox3 = new GroupBox();
 			panel1 = new Panel();
 			btnInPhieuNhap = new Button();
@@ -52,10 +45,17 @@
 			btnSuaPhieuNhap = new Button();
 			btnThemPhieuNhap = new Button();
 			label1 = new Label();
-			txtTim = new TextBox();
+			txtTimPhieuNhap = new TextBox();
+			colChiTietMaPhieuNhap = new DataGridViewTextBoxColumn();
+			colMaChiTietPhieuNhap = new DataGridViewTextBoxColumn();
+			colChiTietMaPhuTung = new DataGridViewTextBoxColumn();
+			colChiTietSoLuongNhap = new DataGridViewTextBoxColumn();
+			colChiTietDonGiaNhap = new DataGridViewTextBoxColumn();
+			colChiTietThanhTien = new DataGridViewTextBoxColumn();
+			colHanSuDung = new DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)dgvPhieuNhap).BeginInit();
 			groupBox2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)dgvChiTiet).BeginInit();
+			((System.ComponentModel.ISupportInitialize)dgvChiTietPhieuNhap).BeginInit();
 			groupBox3.SuspendLayout();
 			panel1.SuspendLayout();
 			SuspendLayout();
@@ -65,7 +65,7 @@
 			dgvPhieuNhap.AllowUserToAddRows = false;
 			dgvPhieuNhap.AllowUserToDeleteRows = false;
 			dgvPhieuNhap.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dgvPhieuNhap.Columns.AddRange(new DataGridViewColumn[] { colMaPhieuNhap, colNgayNhap, colTongSoLuongNhap, colThanhTienNhap, colMaNVNhap });
+			dgvPhieuNhap.Columns.AddRange(new DataGridViewColumn[] { colMaPhieuNhap, colNgayNhap, colTongSoLuongNhap, colThanhTienNhap, colGhiChu, colMaNhanVienNhap });
 			dgvPhieuNhap.Location = new Point(6, 26);
 			dgvPhieuNhap.Name = "dgvPhieuNhap";
 			dgvPhieuNhap.RowHeadersWidth = 51;
@@ -105,13 +105,21 @@
 			colThanhTienNhap.Name = "colThanhTienNhap";
 			colThanhTienNhap.Width = 175;
 			// 
-			// colMaNVNhap
+			// colGhiChu
 			// 
-			colMaNVNhap.DataPropertyName = "NguoiNhap";
-			colMaNVNhap.HeaderText = "Mã NV nhập";
-			colMaNVNhap.MinimumWidth = 6;
-			colMaNVNhap.Name = "colMaNVNhap";
-			colMaNVNhap.Width = 200;
+			colGhiChu.DataPropertyName = "GhiChu";
+			colGhiChu.HeaderText = "Ghi chú";
+			colGhiChu.MinimumWidth = 6;
+			colGhiChu.Name = "colGhiChu";
+			colGhiChu.Width = 125;
+			// 
+			// colMaNhanVienNhap
+			// 
+			colMaNhanVienNhap.DataPropertyName = "MaNhanVienNhap";
+			colMaNhanVienNhap.HeaderText = "Mã NV nhập";
+			colMaNhanVienNhap.MinimumWidth = 6;
+			colMaNhanVienNhap.Name = "colMaNhanVienNhap";
+			colMaNhanVienNhap.Width = 200;
 			// 
 			// groupBox2
 			// 
@@ -123,85 +131,21 @@
 			groupBox2.TabStop = false;
 			groupBox2.Text = "Danh sách phiếu nhập";
 			// 
-			// dgvChiTiet
+			// dgvChiTietPhieuNhap
 			// 
-			dgvChiTiet.AllowUserToAddRows = false;
-			dgvChiTiet.AllowUserToDeleteRows = false;
-			dgvChiTiet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dgvChiTiet.Columns.AddRange(new DataGridViewColumn[] { colChiTietMaPhieuNhap, colChiTietTenNCC, colChiTietMaPhuTung, colChiTietTenPhuTung, colChiTietSoLuongNhap, colChiTietDonGiaNhap, colChiTietThanhTien, colChiTietHanSuDung });
-			dgvChiTiet.Location = new Point(6, 26);
-			dgvChiTiet.Name = "dgvChiTiet";
-			dgvChiTiet.RowHeadersWidth = 51;
-			dgvChiTiet.Size = new Size(846, 267);
-			dgvChiTiet.TabIndex = 0;
-			// 
-			// colChiTietMaPhieuNhap
-			// 
-			colChiTietMaPhieuNhap.DataPropertyName = "MaPhieuNhap";
-			colChiTietMaPhieuNhap.HeaderText = "Mã phiếu nhập";
-			colChiTietMaPhieuNhap.MinimumWidth = 6;
-			colChiTietMaPhieuNhap.Name = "colChiTietMaPhieuNhap";
-			colChiTietMaPhieuNhap.Width = 125;
-			// 
-			// colChiTietTenNCC
-			// 
-			colChiTietTenNCC.DataPropertyName = "TenNCC";
-			colChiTietTenNCC.HeaderText = "Nhà cung cấp";
-			colChiTietTenNCC.MinimumWidth = 6;
-			colChiTietTenNCC.Name = "colChiTietTenNCC";
-			colChiTietTenNCC.Width = 125;
-			// 
-			// colChiTietMaPhuTung
-			// 
-			colChiTietMaPhuTung.DataPropertyName = "MaPhuTung";
-			colChiTietMaPhuTung.HeaderText = "Mã phụ tùng";
-			colChiTietMaPhuTung.MinimumWidth = 6;
-			colChiTietMaPhuTung.Name = "colChiTietMaPhuTung";
-			colChiTietMaPhuTung.Width = 125;
-			// 
-			// colChiTietTenPhuTung
-			// 
-			colChiTietTenPhuTung.DataPropertyName = "TenPhuTung";
-			colChiTietTenPhuTung.HeaderText = "Tên phụ tùng";
-			colChiTietTenPhuTung.MinimumWidth = 6;
-			colChiTietTenPhuTung.Name = "colChiTietTenPhuTung";
-			colChiTietTenPhuTung.Width = 125;
-			// 
-			// colChiTietSoLuongNhap
-			// 
-			colChiTietSoLuongNhap.DataPropertyName = "SoLuongNhap";
-			colChiTietSoLuongNhap.HeaderText = "Số lượng nhập";
-			colChiTietSoLuongNhap.MinimumWidth = 6;
-			colChiTietSoLuongNhap.Name = "colChiTietSoLuongNhap";
-			colChiTietSoLuongNhap.Width = 125;
-			// 
-			// colChiTietDonGiaNhap
-			// 
-			colChiTietDonGiaNhap.DataPropertyName = "DonGiaNhap";
-			colChiTietDonGiaNhap.HeaderText = "Đơn giá nhập";
-			colChiTietDonGiaNhap.MinimumWidth = 6;
-			colChiTietDonGiaNhap.Name = "colChiTietDonGiaNhap";
-			colChiTietDonGiaNhap.Width = 125;
-			// 
-			// colChiTietThanhTien
-			// 
-			colChiTietThanhTien.DataPropertyName = "ThanhTien";
-			colChiTietThanhTien.HeaderText = "Thành Tiền";
-			colChiTietThanhTien.MinimumWidth = 6;
-			colChiTietThanhTien.Name = "colChiTietThanhTien";
-			colChiTietThanhTien.Width = 125;
-			// 
-			// colChiTietHanSuDung
-			// 
-			colChiTietHanSuDung.DataPropertyName = "HanSuDung";
-			colChiTietHanSuDung.HeaderText = "Hạn sử dụng";
-			colChiTietHanSuDung.MinimumWidth = 6;
-			colChiTietHanSuDung.Name = "colChiTietHanSuDung";
-			colChiTietHanSuDung.Width = 125;
+			dgvChiTietPhieuNhap.AllowUserToAddRows = false;
+			dgvChiTietPhieuNhap.AllowUserToDeleteRows = false;
+			dgvChiTietPhieuNhap.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			dgvChiTietPhieuNhap.Columns.AddRange(new DataGridViewColumn[] { colChiTietMaPhieuNhap, colMaChiTietPhieuNhap, colChiTietMaPhuTung, colChiTietSoLuongNhap, colChiTietDonGiaNhap, colChiTietThanhTien, colHanSuDung });
+			dgvChiTietPhieuNhap.Location = new Point(6, 26);
+			dgvChiTietPhieuNhap.Name = "dgvChiTietPhieuNhap";
+			dgvChiTietPhieuNhap.RowHeadersWidth = 51;
+			dgvChiTietPhieuNhap.Size = new Size(846, 267);
+			dgvChiTietPhieuNhap.TabIndex = 0;
 			// 
 			// groupBox3
 			// 
-			groupBox3.Controls.Add(dgvChiTiet);
+			groupBox3.Controls.Add(dgvChiTietPhieuNhap);
 			groupBox3.Location = new Point(12, 378);
 			groupBox3.Name = "groupBox3";
 			groupBox3.Size = new Size(858, 299);
@@ -280,20 +224,76 @@
 			label1.TabIndex = 5;
 			label1.Text = "Tìm:";
 			// 
-			// txtTim
+			// txtTimPhieuNhap
 			// 
-			txtTim.Location = new Point(103, 27);
-			txtTim.Name = "txtTim";
-			txtTim.Size = new Size(239, 27);
-			txtTim.TabIndex = 6;
-			txtTim.TextChanged += txtTim_TextChanged;
+			txtTimPhieuNhap.Location = new Point(103, 27);
+			txtTimPhieuNhap.Name = "txtTimPhieuNhap";
+			txtTimPhieuNhap.Size = new Size(239, 27);
+			txtTimPhieuNhap.TabIndex = 6;
+			txtTimPhieuNhap.TextChanged += txtTim_TextChanged;
+			// 
+			// colChiTietMaPhieuNhap
+			// 
+			colChiTietMaPhieuNhap.DataPropertyName = "MaPhieuNhap";
+			colChiTietMaPhieuNhap.HeaderText = "Mã phiếu nhập";
+			colChiTietMaPhieuNhap.MinimumWidth = 6;
+			colChiTietMaPhieuNhap.Name = "colChiTietMaPhieuNhap";
+			colChiTietMaPhieuNhap.Width = 125;
+			// 
+			// colMaChiTietPhieuNhap
+			// 
+			colMaChiTietPhieuNhap.DataPropertyName = "MaChiTietPhieuNhap";
+			colMaChiTietPhieuNhap.HeaderText = "Mã chi tiết phiếu nhập";
+			colMaChiTietPhieuNhap.MinimumWidth = 6;
+			colMaChiTietPhieuNhap.Name = "colMaChiTietPhieuNhap";
+			colMaChiTietPhieuNhap.Width = 125;
+			// 
+			// colChiTietMaPhuTung
+			// 
+			colChiTietMaPhuTung.DataPropertyName = "MaPhuTung";
+			colChiTietMaPhuTung.HeaderText = "Mã phụ tùng";
+			colChiTietMaPhuTung.MinimumWidth = 6;
+			colChiTietMaPhuTung.Name = "colChiTietMaPhuTung";
+			colChiTietMaPhuTung.Width = 125;
+			// 
+			// colChiTietSoLuongNhap
+			// 
+			colChiTietSoLuongNhap.DataPropertyName = "SoLuongNhap";
+			colChiTietSoLuongNhap.HeaderText = "Số lượng nhập";
+			colChiTietSoLuongNhap.MinimumWidth = 6;
+			colChiTietSoLuongNhap.Name = "colChiTietSoLuongNhap";
+			colChiTietSoLuongNhap.Width = 125;
+			// 
+			// colChiTietDonGiaNhap
+			// 
+			colChiTietDonGiaNhap.DataPropertyName = "DonGiaNhap";
+			colChiTietDonGiaNhap.HeaderText = "Đơn giá nhập";
+			colChiTietDonGiaNhap.MinimumWidth = 6;
+			colChiTietDonGiaNhap.Name = "colChiTietDonGiaNhap";
+			colChiTietDonGiaNhap.Width = 125;
+			// 
+			// colChiTietThanhTien
+			// 
+			colChiTietThanhTien.DataPropertyName = "ThanhTien";
+			colChiTietThanhTien.HeaderText = "Thành Tiền";
+			colChiTietThanhTien.MinimumWidth = 6;
+			colChiTietThanhTien.Name = "colChiTietThanhTien";
+			colChiTietThanhTien.Width = 125;
+			// 
+			// colHanSuDung
+			// 
+			colHanSuDung.DataPropertyName = "HanSuDung";
+			colHanSuDung.HeaderText = "Hạn sử dụng";
+			colHanSuDung.MinimumWidth = 6;
+			colHanSuDung.Name = "colHanSuDung";
+			colHanSuDung.Width = 125;
 			// 
 			// frmPhieuNhap
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(882, 816);
-			Controls.Add(txtTim);
+			Controls.Add(txtTimPhieuNhap);
 			Controls.Add(label1);
 			Controls.Add(panel1);
 			Controls.Add(groupBox3);
@@ -305,7 +305,7 @@
 			Load += frmPhieuNhap_Load;
 			((System.ComponentModel.ISupportInitialize)dgvPhieuNhap).EndInit();
 			groupBox2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)dgvChiTiet).EndInit();
+			((System.ComponentModel.ISupportInitialize)dgvChiTietPhieuNhap).EndInit();
 			groupBox3.ResumeLayout(false);
 			panel1.ResumeLayout(false);
 			ResumeLayout(false);
@@ -316,28 +316,28 @@
 
 		private DataGridView dgvPhieuNhap;
 		private GroupBox groupBox2;
-		private DataGridView dgvChiTiet;
+		private DataGridView dgvChiTietPhieuNhap;
 		private GroupBox groupBox3;
 		private Panel panel1;
 		private Button btnThoat;
 		private Button btnXoaPhieuNhap;
 		private Button btnSuaPhieuNhap;
 		private Button btnThemPhieuNhap;
+		private Button btnInPhieuNhap;
+		private Label label1;
+		private TextBox txtTimPhieuNhap;
 		private DataGridViewTextBoxColumn colMaPhieuNhap;
 		private DataGridViewTextBoxColumn colNgayNhap;
 		private DataGridViewTextBoxColumn colTongSoLuongNhap;
 		private DataGridViewTextBoxColumn colThanhTienNhap;
-		private DataGridViewTextBoxColumn colMaNVNhap;
+		private DataGridViewTextBoxColumn colGhiChu;
+		private DataGridViewTextBoxColumn colMaNhanVienNhap;
 		private DataGridViewTextBoxColumn colChiTietMaPhieuNhap;
-		private DataGridViewTextBoxColumn colChiTietTenNCC;
+		private DataGridViewTextBoxColumn colMaChiTietPhieuNhap;
 		private DataGridViewTextBoxColumn colChiTietMaPhuTung;
-		private DataGridViewTextBoxColumn colChiTietTenPhuTung;
 		private DataGridViewTextBoxColumn colChiTietSoLuongNhap;
 		private DataGridViewTextBoxColumn colChiTietDonGiaNhap;
 		private DataGridViewTextBoxColumn colChiTietThanhTien;
-		private DataGridViewTextBoxColumn colChiTietHanSuDung;
-		private Button btnInPhieuNhap;
-		private Label label1;
-		private TextBox txtTim;
+		private DataGridViewTextBoxColumn colHanSuDung;
 	}
 }

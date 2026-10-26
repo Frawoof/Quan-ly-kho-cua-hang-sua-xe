@@ -7,6 +7,9 @@ namespace btl
 	{
 		Classes.DatabaseProcessor dtbase = new Classes.DatabaseProcessor();
 		Classes.Function function = new Classes.Function();
+
+		int selectedRowIndex = -1;
+
 		public frmNhapPhieuNhap()
 		{
 			InitializeComponent();
@@ -20,16 +23,19 @@ namespace btl
 
 		private void CheckBtnSua()
 		{
-			string sql = "Select * From PhieuNhap Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'";
-			DataTable data = dtbase.ReadData(sql);
+			string maPhieuNhap = txtMaPhieuNhap.Text;
 
-			if(data.Rows.Count > 0)
+			string sqlCheck = "Select * From PhieuNhap Where MaPhieuNhap = '" + maPhieuNhap + "'";
+
+			DataTable dataCheck = dtbase.ReadData(sqlCheck);
+
+			if(dataCheck.Rows.Count > 0)
 			{
-				string sqlDgvPhuTung = "Select pn.MaPhieuNhap, ncc.TenNCC, pn.NgayNhap, pt.MaPhuTung, pt.TenPhuTung, ct.SoLuong As SoLuongNhap, ct.DonGiaNhap, ct.ThanhTien, ct.HanSuDung, pn.NguoiNhap " +
+				string sqlDgvPhuTung = "Select pn.MaPhieuNhap, ncc.TenNCC, pn.NgayNhap, pt.MaPhuTung, pt.TenPhuTung, ct.SoLuong As SoLuongNhap, ct.DonGiaNhap, pt.DonGiaBan, ct.ThanhTien, ct.HanSuDung, pn.MaNhanVienNhap, pn.GhiChu " +
 					"From PhuTung pt Join ChiTietPhieuNhap ct On pt.MaPhuTung = ct.MaPhuTung " +
 					"Join PhieuNhap pn On pn.MaPhieuNhap = ct.MaPhieuNhap " +
 					"Join NhaCungCap ncc On ct.MaNCC = ncc.MaNCC " +
-					"Where pn.MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'";
+					"Where pn.MaPhieuNhap = '" + maPhieuNhap + "'";
 
 				dgvPhuTung.DataSource = dtbase.ReadData(sqlDgvPhuTung);
 			}
@@ -71,6 +77,7 @@ namespace btl
 			txtTenPhuTung.Clear();
 			dtpHanSuDung.Value = DateTime.Now;
 			txtSoLuongNhap.Clear();
+			txtDonGiaBan.Clear();
 			txtDonGiaNhap.Clear();
 			txtThanhTien.Clear();
 		}
@@ -97,10 +104,13 @@ namespace btl
 
 			if (MessageBox.Show("Chắc chắn muốn xóa?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
-				string sql = "Delete From NhaCungCap Where MaNCC = '" + cbNhaCungCap.SelectedValue.ToString() + "'";
+				string tenNCC = cbNhaCungCap.SelectedValue.ToString();
+				string sql = "Delete From NhaCungCap Where MaNCC = '" + tenNCC + "'";
+
 				dtbase.ChangeData(sql);
 
 				MessageBox.Show("Xóa thành công!", "Thông báo");
+
 				function.AddComboBox(cbNhaCungCap, dtbase.ReadData("Select TenNCC, MaNCC From NhaCungCap"), "TenNCC", "MaNCC");
 				cbNhaCungCap.SelectedIndex = -1;
 			}
@@ -108,10 +118,16 @@ namespace btl
 
 		private void btnThemPhuTung_Click(object sender, EventArgs e)
 		{
-			if (cbMaPhuTung.Text.Trim() == "" || txtTenPhuTung.Text.Trim() == "" || txtSoLuongNhap.Text.Trim() == "" || txtDonGiaNhap.Text.Trim() == "" || txtMaPhieuNhap.Text.Trim() == "" || txtMaNVNhap.Text.Trim() == "" || cbNhaCungCap.SelectedValue == null)
+			if (cbMaPhuTung.Text.Trim() == "" || txtTenPhuTung.Text.Trim() == "" || txtSoLuongNhap.Text.Trim() == "" || txtDonGiaNhap.Text.Trim() == "" || txtDonGiaBan.Text.Trim() == "" || txtMaPhieuNhap.Text.Trim() == "" || txtMaNVNhap.Text.Trim() == "" || cbNhaCungCap.SelectedValue == null)
 			{
 				MessageBox.Show("Không được để trống!", "Thông báo");
 				return;
+			}
+
+			if(Convert.ToDecimal(txtDonGiaNhap.Text) >= Convert.ToDecimal(txtDonGiaBan.Text))
+			{
+				MessageBox.Show("Giá bán không hợp lệ!", "Thông báo");
+					return;
 			}
 
 			if (dtpHanSuDung.Value.Date < DateTime.Today)
@@ -135,9 +151,11 @@ namespace btl
 				txtTenPhuTung.Text,
 				txtSoLuongNhap.Text,
 				txtDonGiaNhap.Text,
+				txtDonGiaBan.Text,
 				txtThanhTien.Text,
 				dtpHanSuDung.Value.Date,
-				txtMaNVNhap.Text
+				txtMaNVNhap.Text,
+				txtGhiChu.Text
 				);
 
 			ResetForm();
@@ -180,8 +198,6 @@ namespace btl
 			btnXoaNCC.Enabled = true;
 		}
 
-		int selectedRowIndex = -1;
-
 		private void dgvPhuTung_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.RowIndex < 0)
@@ -196,16 +212,18 @@ namespace btl
 			btnThemPhuTung.Enabled = false;
 			btnXoaNCC.Enabled = false;
 
-			txtMaPhieuNhap.Text = dgvPhuTung.CurrentRow.Cells["colMaPhieu"].Value.ToString();
+			txtMaPhieuNhap.Text = dgvPhuTung.CurrentRow.Cells["colMaPhieuNhap"].Value.ToString();
 			dtpNgayNhap.Value = Convert.ToDateTime(dgvPhuTung.CurrentRow.Cells["colNgayNhap"].Value);
-			txtMaNVNhap.Text = dgvPhuTung.CurrentRow.Cells["colMaNVNhap"].Value.ToString();
+			txtMaNVNhap.Text = dgvPhuTung.CurrentRow.Cells["colMaNhanVienNhap"].Value.ToString();
 			cbNhaCungCap.Text = dgvPhuTung.CurrentRow.Cells["colTenNCC"].Value.ToString();
 			cbMaPhuTung.Text = dgvPhuTung.CurrentRow.Cells["colMaPhuTung"].Value.ToString();
 			txtTenPhuTung.Text = dgvPhuTung.CurrentRow.Cells["colTenPhuTung"].Value.ToString();
 			dtpHanSuDung.Value = Convert.ToDateTime(dgvPhuTung.CurrentRow.Cells["colHanSuDung"].Value);
 			txtSoLuongNhap.Text = dgvPhuTung.CurrentRow.Cells["colSoLuongNhap"].Value.ToString();
 			txtDonGiaNhap.Text = dgvPhuTung.CurrentRow.Cells["colDonGiaNhap"].Value.ToString();
+			txtDonGiaBan.Text = dgvPhuTung.CurrentRow.Cells["colDonGiaBan"].Value.ToString();
 			txtThanhTien.Text = dgvPhuTung.CurrentRow.Cells["colThanhTien"].Value.ToString();
+			txtGhiChu.Text = dgvPhuTung.CurrentRow.Cells["colGhiChu"].Value.ToString();
 		}
 
 		private void btnSuaPhuTung_Click(object sender, EventArgs e)
@@ -219,14 +237,16 @@ namespace btl
 			{
 				DataGridViewRow row = dgvPhuTung.Rows[selectedRowIndex];
 				row.Cells["colNgayNhap"].Value = dtpNgayNhap.Value;
-				row.Cells["colMaNVNhap"].Value = txtMaNVNhap.Text;
+				row.Cells["colMaNhanVienNhap"].Value = txtMaNVNhap.Text;
 				row.Cells["colTenNCC"].Value = cbNhaCungCap.Text;
 				row.Cells["colMaPhuTung"].Value = cbMaPhuTung.Text;
 				row.Cells["colTenPhuTung"].Value = txtTenPhuTung.Text;
 				row.Cells["colHanSuDung"].Value = dtpHanSuDung.Value;
 				row.Cells["colSoLuongNhap"].Value = txtSoLuongNhap.Text;
 				row.Cells["colDonGiaNhap"].Value = txtDonGiaNhap.Text;
+				row.Cells["colDonGiaBan"].Value = txtDonGiaBan.Text;
 				row.Cells["colThanhTien"].Value = txtThanhTien.Text;
+				row.Cells["colGhiChu"].Value = txtGhiChu.Text;
 
 				ResetForm();
 
@@ -287,6 +307,7 @@ namespace btl
 			dtpHanSuDung.Value = DateTime.Now;
 			txtSoLuongNhap.Clear();
 			txtDonGiaNhap.Clear();
+			txtDonGiaBan.Clear();
 			txtThanhTien.Clear();
 		}
 
@@ -299,47 +320,112 @@ namespace btl
 				MessageBox.Show("Thêm thông tin phiếu nhập trước!", "Thông báo");
 				return;
 			}
+
+			string maNVCheck = txtMaNVNhap.Text.Trim();
+			string sqlNhanVien = "Select * " +
+				"From NhanVien " +
+				"Where MaNhanVien = '" + maNVCheck + "'";
+			DataTable dataNhanVien = dtbase.ReadData(sqlNhanVien);
+
+			if (dataNhanVien.Rows.Count == 0)
+			{
+				MessageBox.Show("Mã nhân viên không tồn tại!");
+				txtMaNVNhap.Focus();
+				return;
+			}
+
 			try
 			{
 				DataTable dataLuu = dtbase.ReadData("Select * From PhieuNhap Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'");
 				if (dataLuu.Rows.Count > 0)
 				{
+					string maPhieuNhap = txtMaPhieuNhap.Text;
 					DateTime updateNgayNhap = Convert.ToDateTime(rows[0].Cells["colNgayNhap"].Value);
-					string sqlUpdateNgayNhap = "Update PhieuNhap Set NgayNhap = " + updateNgayNhap + "Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'";
-					dtbase.ChangeData(sqlUpdateNgayNhap);
+					string updateMaNV = rows[0].Cells["colMaNhanVienNhap"].Value.ToString();
+					string updateGhiChu = rows[0].Cells["colGhiChu"].Value.ToString();
 
-					string updateMaNV = rows[0].Cells["colMaNVNhap"].Value.ToString();
-					string sqlUpdateMaNV = "Update PhieuNhap Set nguoiNhap = '" + updateMaNV + "' Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'";
-					dtbase.ChangeData(sqlUpdateMaNV);
+					string sqlUpdatePhieuNhap = "Update PhieuNhap Set " +
+						"NgayNhap = '" + updateNgayNhap + "', " +
+						"MaNhanVienNhap = '" + updateMaNV + "', " +
+						"GhiChu = '" + updateGhiChu + "' " +
+						"Where MaPhieuNhap = '" + maPhieuNhap + "'";
+					string sqlDeleteChiTietPhieuNhap = "Delete From ChiTietPhieuNhap Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'";
+					string sqlUpdateSoLuongPhuTung = "Update pt Set " +
+						"pt.SoLuongTon = pt.SoLuongTon - ct.SoLuong" +
+						"From PhuTung pt Join ChiTietPhieuNhap ct = pt.MaPhuTung = ct.MaPhuTung " +
+						"Where ct.MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'";
 
-					dtbase.ChangeData("Delete From ChiTietPhieuNhap Where MaPhieuNhap = '" + txtMaPhieuNhap.Text + "'");
+					dtbase.ChangeData(sqlUpdateSoLuongPhuTung);
+					dtbase.ChangeData(sqlUpdatePhieuNhap);
+					dtbase.ChangeData(sqlDeleteChiTietPhieuNhap);
 				}
 				else
 				{
 					string maPhieuNhap = txtMaPhieuNhap.Text;
-
 					DateTime ngayNhap = Convert.ToDateTime(rows[0].Cells["colNgayNhap"].Value);
-					string maNV = rows[0].Cells["colMaNVNhap"].Value.ToString();
+					string maNV = rows[0].Cells["colMaNhanVienNhap"].Value.ToString();
+					string ghiChu = rows[0].Cells["colGhiChu"].Value.ToString();
 
-					string sqlPhieu = "Insert Into PhieuNhap (MaPhieuNhap, NgayNhap, NguoiNhap) " +
-						"Values('" + maPhieuNhap + "', '" + ngayNhap + "', '" + maNV + "')";
+					string sqlPhieuNhap = "Insert Into PhieuNhap (MaPhieuNhap, NgayNhap, MaNhanVienNhap, GhiChu) " +
+						"Values " +
+						"(" +
+						"'" + maPhieuNhap + "', " +
+						"'" + ngayNhap + "', " +
+						"'" + maNV + "', " +
+						"'" + ghiChu + "'" +
+						")";
 
-					dtbase.ChangeData(sqlPhieu);
+					dtbase.ChangeData(sqlPhieuNhap);
 				}
 
 				foreach (DataGridViewRow row in rows)
 				{
+					string maPhieuNhap = row.Cells["colMaphieuNhap"].Value.ToString();
+					string maPhuTung = row.Cells["colMaPhuTung"].Value.ToString();
+					string tenPhuTung = row.Cells["colTenPhuTung"].Value.ToString();
+					int soLuongNhap = Convert.ToInt32(row.Cells["colSoLuongNhap"].Value.ToString());
+					decimal donGiaNhap = Convert.ToDecimal(row.Cells["colDonGiaNhap"].Value.ToString());
+					decimal donGiaBan = Convert.ToDecimal(row.Cells["colDonGiaBan"].Value.ToString());
+					DateTime hanSuDung = Convert.ToDateTime(row.Cells["colHanSuDung"].Value);
+
 					string tenNCC = row.Cells["colTenNCC"].Value.ToString();
 					DataTable data = dtbase.ReadData("Select MaNCC From NhaCungCap Where TenNCC = N'" + tenNCC + "'");
 					string maNCC = data.Rows[0]["MaNCC"].ToString();
 
-					string sqlChiTietPhieuNhap = "Insert Into ChiTietPhieuNhap (MaPhieuNhap, MaNCC, MaPhuTung, SoLuong, DonGiaNhap, hanSuDung) Values" +
-						"('" + row.Cells["colMaPhieu"].Value.ToString() + "', " +
-						"'" + maNCC + "', " +
-						"'" + row.Cells["colMaPhuTung"].Value.ToString() + "', " +
-						"'" + Convert.ToInt32(row.Cells["colSoLuongNhap"].Value.ToString()) + "', " +
-						"'" + Convert.ToDecimal(row.Cells["colDonGiaNhap"].Value.ToString()) + "', " +
-						"'" + Convert.ToDateTime(row.Cells["colHanSuDung"].Value) + "')";
+					string sqlKiemTraPhuTung = "Select * From PhuTung Where MaPhuTung = '" + maPhuTung + "'";
+					if(dtbase.ReadData(sqlKiemTraPhuTung).Rows.Count > 0)
+					{
+						string sqlPhuTungUpdate = "Update PhuTung Set " +
+							"SoLuongTon = SoLuongTon + '" + soLuongNhap + "' " +
+							"Where MaPhuTung = '" + maPhuTung + "' " +
+							"And HanSuDung = '" + hanSuDung + "'";
+
+						dtbase.ChangeData(sqlPhuTungUpdate);
+					}
+					else
+					{
+						string sqlPhuTung = "Insert Into PhuTung (MaPhuTung, TenPhuTung, MaNCC, HanSuDung, DonGiaNhap, DonGiaBan, SoLuongTon) " +
+							"Values " +
+							"(" +
+							"'" + maPhuTung + "', " +
+							"'" + tenPhuTung + "', " +
+							"'" + maNCC + "', " +
+							"'" + hanSuDung + "', " +
+							"'" + donGiaNhap + "', " +
+							"'" + donGiaBan + "', " +
+							"'" + soLuongNhap + "'" +
+							")";
+
+						dtbase.ChangeData(sqlPhuTung);
+					}
+
+					string sqlChiTietPhieuNhap = "Insert Into ChiTietPhieuNhap (MaPhieuNhap, MaPhuTung, SoLuong, DonGiaNhap) Values" +
+						"(" +
+						"'" + maPhieuNhap + "', " +
+						"'" + maPhuTung + "', " +
+						"'" + soLuongNhap + "', " +
+						"'" + donGiaNhap + "'" +
+						")";
 
 					dtbase.ChangeData(sqlChiTietPhieuNhap);
 				}

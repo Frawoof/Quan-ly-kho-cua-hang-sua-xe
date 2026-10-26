@@ -8,7 +8,7 @@ namespace btl.Classes
 {
 	public class DatabaseProcessor
 	{
-		string strConnect = "Data Source=localhost; Database=QuanLyNhapKho; User ID=sa; Password=1234$; Integrated Security=false;";
+		string strConnect = "Data Source=localhost; Database=QuanLySuaXe; User ID=sa; Password=1234$; Integrated Security=false;";
 		SqlConnection sqlConnect = null;
 		void OpenConnection()
 		{
